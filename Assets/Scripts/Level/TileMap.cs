@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TileMap : MonoBehaviour
 {
+    [SerializeField] private Transform parentTile;
     [SerializeField] private LevelSetup _size;
     [SerializeField] private List<Tile> _map;
     public void Start()
@@ -18,14 +19,13 @@ public class TileMap : MonoBehaviour
 
         Draw(_size.gapSize);
         DeleteTile(0,0);
-
     }
 
     private void Draw(float gapSize)
     {
         foreach (var tile in _map)
         {
-            tile.Draw(gapSize);
+            tile.Draw(gapSize, parentTile);
         }
     }
 
