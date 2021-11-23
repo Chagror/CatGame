@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/BaseScene.unity
     guid: 70aaa04ac4add834f9829d5a0ab77c63
   - enabled: 1
-    path: Assets/Scenes/SceneFrancois.unity
+    path: Assets/Scenes/Level.unity
     guid: 18962d0029bf95c49852a6577862f5eb
   - enabled: 1
     path: Assets/Scenes/UI.unity
