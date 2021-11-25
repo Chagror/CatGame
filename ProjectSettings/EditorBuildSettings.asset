@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/UI.unity
     guid: c9f946d61c9ca6149a6253045d62ab39
   - enabled: 1
-    path: Assets/Scenes/SceneMathieu.unity
+    path: Assets/Scenes/Input.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
