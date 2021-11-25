@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Input.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input/Input.inputactions'
 
 using System;
 using System.Collections;
@@ -55,7 +55,7 @@ public class @Input : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7c626ca3-30d0-484a-b5b3-0744fa716abb"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -77,7 +77,7 @@ public class @Input : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""baf30998-f4e2-4f90-bb7d-3d998c9eb38e"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

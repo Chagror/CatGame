@@ -22,10 +22,7 @@ public class PlayerInput : MonoBehaviour
         _input = new Input();
 
         _input.Gameplay.Up.performed += ctx =>
-        {
-            Debug.Log("reger");
             _inputManager.GoUp();
-        };
         
          _input.Gameplay.Down.performed += ctx =>
             _inputManager.GoDown();
