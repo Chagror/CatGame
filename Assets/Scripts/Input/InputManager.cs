@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    #region Singleton
     public static InputManager instance;
     private void Awake()
     {
@@ -12,6 +13,14 @@ public class InputManager : MonoBehaviour
             Destroy(this);
         else
             instance = this;
+    }
+    #endregion
+
+    private GameManager _gameManager;
+
+    private void Start()
+    {
+        _gameManager = GameManager.instance;
     }
 
     public void GoUp()
@@ -29,5 +38,9 @@ public class InputManager : MonoBehaviour
     public void GoDown()
     {
         Debug.Log("I went down.");
+    }
+    public void Pause()
+    {
+        _gameManager.SO.propertiesMenu.SetActive(!_gameManager.SO.propertiesMenu.activeSelf);
     }
 }

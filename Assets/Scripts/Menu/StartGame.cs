@@ -13,6 +13,15 @@ public class StartGame : MonoBehaviour
     [SerializeField] private GameObject startMenu;
     [SerializeField] private GameObject propertiesMenu;
 
+    [Header("Data pass")] 
+    [SerializeField] private GameManager _gameManager;
+
+    private void Start()
+    {
+        _gameManager = GameManager.instance;
+        _gameManager.SO.propertiesMenu = propertiesMenu;
+    }
+
     public void Game()
     {
         switch (listPlayers.value)
@@ -38,19 +47,12 @@ public class StartGame : MonoBehaviour
             default: break;
         }
 
-        //Pass that number to the gameManager
+        _gameManager.SO.nbPlayers = nbPlayers;
         startMenu.SetActive(false);
     }
 
     public void Quit()
     {
         Application.Quit();
-    }
-
-    private void Update()
-    {
-        /*if(Input.GetKeyDown(KeyCode.Escape))
-            propertiesMenu.SetActive(!propertiesMenu.activeSelf);
-        */
     }
 }

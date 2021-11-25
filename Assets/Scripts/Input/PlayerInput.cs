@@ -32,7 +32,11 @@ public class PlayerInput : MonoBehaviour
          
          _input.Gameplay.Right.performed += ctx =>
             _inputManager.GoRight();
+         
+         _input.Menu.PauseMenu.performed += ctx =>
+             _inputManager.Pause();
 
          _input.Gameplay.Enable();
+         _input.Menu.Enable();
     }
 }
