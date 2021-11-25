@@ -17,7 +17,8 @@ public class InputManager : MonoBehaviour
     #endregion
 
     private GameManager _gameManager;
-
+    [SerializeField]
+    private GameEvent _event;
     private void Start()
     {
         _gameManager = GameManager.instance;
@@ -38,6 +39,11 @@ public class InputManager : MonoBehaviour
     public void GoDown()
     {
         Debug.Log("I went down.");
+    }
+
+    public void Test()
+    {
+        _event.Raise();
     }
     public void Pause()
     {
