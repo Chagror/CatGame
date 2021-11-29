@@ -7,19 +7,22 @@ using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
+    //Dropdown of the menu
     [SerializeField] private Dropdown listPlayers;
-    private int nbPlayers;
+    private int nbPlayers; 
 
+    //Both ref to the menus
     [SerializeField] private GameObject startMenu;
     [SerializeField] private GameObject propertiesMenu;
 
-    [Header("Data pass")] 
-    [SerializeField] private GameManager _gameManager;
+    //Ref to the script named "GameManager"
+    private GameManager _gameManager;
 
     private void Start()
     {
         _gameManager = GameManager.instance;
         _gameManager.SO.propertiesMenu = propertiesMenu;
+        propertiesMenu.SetActive(false);
     }
 
     public void Game()
@@ -48,6 +51,7 @@ public class StartGame : MonoBehaviour
         }
 
         _gameManager.SO.nbPlayers = nbPlayers;
+        _gameManager.SO.volume = PlayerPrefs.GetInt("Volume");
         startMenu.SetActive(false);
     }
 

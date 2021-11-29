@@ -7,4 +7,5 @@ public class Game : ScriptableObject
 {
     public int nbPlayers;
     public GameObject propertiesMenu;
+    public int volume;
 }

@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe5b1998e416324abcd256fc5243b21, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d6f983236874cd43b6f069b0c894e72, type: 3}
   m_Name: SO_Game
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  m_EditorClassIdentifier: 
   nbPlayers: 0
+  propertiesMenu: {fileID: 0}
