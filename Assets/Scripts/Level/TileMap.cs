@@ -5,22 +5,20 @@ using UnityEngine;
 public class TileMap : MonoBehaviour
 {
     [SerializeField] private Transform parentTile;
-    [SerializeField] private LevelSetup _size;
+    [SerializeField] private LevelSetup _levelSetup;
     [SerializeField] private List<Tile> _map;
-    public void Start()
+    public void  createTileMap() 
     {
-        for (int i = 0; i < _size.sizeY; i++)
+        for (int i = 0; i < _levelSetup.sizeY; i++)
         {
-            for (int j = 0; j < _size.sizeX; j++)
+            for (int j = 0; j < _levelSetup.sizeX; j++)
             {
-                _map.Add(new Tile(j,i,10,_size.tileObject));
+                _map.Add(new Tile(j, i, _levelSetup.size, _levelSetup.tileObject));
             }
         }
 
-        Draw(_size.gapSize);
-        DeleteTile(0,0);
+        Draw(_levelSetup.gapSize);
     }
-
     private void Draw(float gapSize)
     {
         foreach (var tile in _map)
@@ -28,15 +26,16 @@ public class TileMap : MonoBehaviour
             tile.Draw(gapSize, parentTile);
         }
     }
-
-    private Tile getTile(int posX, int posY)
+    public LevelSetup GetLevelSetup() { return _levelSetup; }
+    private Tile GetTile(int posX, int posY)
     {
         return _map.Find(item =>item.getX() == posX && item.getY() == posY);
     }
 
+    
     private void DeleteTile(int posX, int posY)
     {
-        Tile toDelete = getTile(posX, posY);
+        Tile toDelete = GetTile(posX, posY);
         _map.Remove(toDelete);
         toDelete.delete();
         

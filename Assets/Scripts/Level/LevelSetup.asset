@@ -16,3 +16,4 @@ MonoBehaviour:
   sizeY: 5
   gapSize: 2
   tileObject: {fileID: 2776223549911708423, guid: 1be964daf89d9794a9cf0f79cd2a0b8f, type: 3}
+  size: 10

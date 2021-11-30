@@ -5,5 +5,6 @@ using UnityEngine;
 public abstract class Sound : ScriptableObject
 {
     // Start is called before the first frame update
+    [SerializeField] protected Game _gameManager;
     public abstract AudioSource Play(AudioSource audioSourceParam = null);
 }

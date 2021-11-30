@@ -24,8 +24,9 @@ public class GameMusic : Sound
         }
         var obj2 = new GameObject("Sound", typeof(AudioSource));
         AudioSource loopAudio = obj2.GetComponent<AudioSource>();
+        source.volume = _gameManager.volume/100.0f;
         loopAudio.loop = true;
-        loopAudio.volume = source.volume;
+        loopAudio.volume = source.volume = _gameManager.volume / 100.0f;
         source.clip = intro;
         source.Play();
         loopAudio.clip = loop;

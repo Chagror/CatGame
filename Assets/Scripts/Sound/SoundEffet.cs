@@ -21,6 +21,7 @@ public class SoundEffet : Sound
         }
 
         source.clip = clip;
+        source.volume = _gameManager.volume / 100.0f;
         source.Play();
         
 

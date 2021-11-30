@@ -226,6 +226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1807800319}
   - component: {fileID: 1807800318}
+  - component: {fileID: 1807800321}
+  - component: {fileID: 1807800320}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -246,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTile: {fileID: 1807800319}
-  _size: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
+  _levelSetup: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
   _map: []
 --- !u!4 &1807800319
 Transform:
@@ -262,3 +264,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1807800320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807800317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14444d033f92bb84d92a94a76ea44a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 1807800318}
+  _gameSetup: {fileID: 11400000, guid: ebbb81000c92fcc40a65a0f7bc788eca, type: 2}
+  _nbreOfRandomIds: 10
+  _playerManager: {fileID: 1807800321}
+--- !u!114 &1807800321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807800317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ebd4b6b6b45e9943831daa9deab1f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelSetup: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
+  _playerPrefabs: {fileID: 2904882857119786692, guid: fa9de6d0711a7f84aa2db4b3a09dcb3b, type: 3}
+  _playerHeightSpawn: 1
+  _players: []
