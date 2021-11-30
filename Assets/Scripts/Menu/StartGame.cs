@@ -9,6 +9,7 @@ public class StartGame : MonoBehaviour
 {
     //Dropdown of the menu
     [SerializeField] private Dropdown listPlayers;
+    [SerializeField] private GameEvent startGame;
     private int nbPlayers; 
 
     //Both ref to the menus
@@ -53,6 +54,7 @@ public class StartGame : MonoBehaviour
         _gameManager.SO.nbPlayers = nbPlayers;
         _gameManager.SO.volume = PlayerPrefs.GetInt("Volume");
         startMenu.SetActive(false);
+        startGame.Raise();
     }
 
     public void Quit()

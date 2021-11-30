@@ -19,11 +19,11 @@ public class GameEventListener : MonoBehaviour
 
     private void OnEnable()
     {
-        _event.RegisterListener(this);
+        if(_event != null) _event.RegisterListener(this);
     }
 
     private void OnDisable()
     {
-        _event.UnregisterListener(this);
+        if(_event != null) _event.UnregisterListener(this);
     }
 }
