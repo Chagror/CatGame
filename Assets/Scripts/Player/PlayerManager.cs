@@ -1,23 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class PlayerManager : MonoBehaviour
 {
+    #region Singleton
+    public static PlayerManager instance;
+    private void Awake()
+    {
+        if (instance)
+            Destroy(this);
+        else
+            instance = this;
+    }
+    #endregion
+    
     [SerializeField] private LevelSetup _levelSetup;
     
     [SerializeField] private GameObject _playerPrefabs;
     [SerializeField] private float _playerHeightSpawn;
-    [SerializeField] private List<Player> _players = new List<Player>();
+    [SerializeField] public List<Player> players = new List<Player>();
     private List<string> _ids = new List<string>();
     private List<int[]> _indexes = new List<int[]>();
-    public void randomSpawn(int nbrePlayer, TileMap map, List<string> ids)
+
+    public void randomSpawn(int nbrePlayer, TileMap map)
     {
         List<GameObject> players = new List<GameObject>();
         _indexes = new List<int[]>();
-        if (nbrePlayer > ids.Count)
-            Debug.LogError("not enought ids");
-        _ids = ids;
         _levelSetup = map.GetLevelSetup();
         int mapSizeX = _levelSetup.sizeX;
         int mapSizeY = _levelSetup.sizeY;
@@ -47,14 +59,14 @@ public class PlayerManager : MonoBehaviour
             pos.z = -(_indexes[i][1] * _levelSetup.size) - (_indexes[i][1] * _levelSetup.gapSize) ;
             pos.y = _playerHeightSpawn;
             Player newPlayer = (Player)Instantiate(_playerPrefabs, pos, Quaternion.identity).GetComponent(typeof(Player));
-            newPlayer.PlayerSetup(_ids[i], _indexes[i][0], _indexes[i][1], _levelSetup.size+ _levelSetup.gapSize);
-            _players.Add(newPlayer);
+            newPlayer.PlayerSetup(i+1, _indexes[i][0], _indexes[i][1], _levelSetup.size+ _levelSetup.gapSize);
+            players.Add(newPlayer);
         }
                  
     }
-    public void LaunchGameWithRadomSpawn(int nbrePlayer, TileMap map, List<string> ids) 
+    public void LaunchGameWithRandomSpawn(int nbrePlayer, TileMap map) 
     {
-        randomSpawn(nbrePlayer,map, ids);
+        randomSpawn(nbrePlayer,map);
         InstanciatePlayer();
     }
 }

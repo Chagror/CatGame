@@ -18,11 +18,7 @@ public class LevelManager : MonoBehaviour
     {
         _map.createTileMap();
         List<string> ids = new List<string>();
-        for (int i = 0; i < _nbreOfRandomIds; i++) 
-        {
-            ids.Add(CreateRandomString());
-        }
-        _playerManager.LaunchGameWithRadomSpawn(_gameSetup.nbPlayers, _map, ids);
+        _playerManager.LaunchGameWithRandomSpawn(_gameSetup.nbPlayers, _map);
     }
     private string CreateRandomString(int stringLength = 10)
     {

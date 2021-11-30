@@ -19,26 +19,57 @@ public class InputManager : MonoBehaviour
     private GameManager _gameManager;
     [SerializeField]
     private GameEvent _event;
+
+    private List<Player> _playerList;
     private void Start()
     {
         _gameManager = GameManager.instance;
+        _playerList = PlayerManager.instance.players;
     }
 
-    public void GoUp()
+    public void GoUp(int id)
     {
-        Debug.Log("I went up.");
+        foreach (Player player in _playerList)
+        {
+            if (player.GetID() == id)
+            {
+                Vector3 tempPos = player.transform.position;
+                player.transform.position = new Vector3(tempPos.x, tempPos.y, tempPos.z + player.GetJumpSize());
+            }
+        }
     }
-    public void GoLeft()
+    public void GoLeft(int id)
     {
-        Debug.Log("I went left.");
+        foreach (Player player in _playerList)
+        {
+            if (player.GetID() == id)
+            {
+                Vector3 tempPos = player.transform.position;
+                player.transform.position = new Vector3(tempPos.x - player.GetJumpSize(), tempPos.y, tempPos.z);
+            }
+        }
     }
-    public void GoRight()
+    public void GoRight(int id)
     {
-        Debug.Log("I went right.");
+        foreach (Player player in _playerList)
+        {
+            if (player.GetID() == id)
+            {
+                Vector3 tempPos = player.transform.position;
+                player.transform.position = new Vector3(tempPos.x + player.GetJumpSize(), tempPos.y, tempPos.z);
+            }
+        }
     }
-    public void GoDown()
+    public void GoDown(int id)
     {
-        Debug.Log("I went down.");
+        foreach (Player player in _playerList)
+        {
+            if (player.GetID() == id)
+            {
+                Vector3 tempPos = player.transform.position;
+                player.transform.position = new Vector3(tempPos.x, tempPos.y, tempPos.z - player.GetJumpSize());
+            }
+        }
     }
 
     public void Test()
