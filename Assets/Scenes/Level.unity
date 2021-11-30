@@ -280,6 +280,7 @@ MonoBehaviour:
   _gameSetup: {fileID: 11400000, guid: ebbb81000c92fcc40a65a0f7bc788eca, type: 2}
   _nbreOfRandomIds: 10
   _playerManager: {fileID: 1807800321}
+  SO_levelManager: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
 --- !u!114 &1807800321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,4 +296,4 @@ MonoBehaviour:
   _levelSetup: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
   _playerPrefabs: {fileID: 2904882857119786692, guid: fa9de6d0711a7f84aa2db4b3a09dcb3b, type: 3}
   _playerHeightSpawn: 1
-  _players: []
+  players: []
