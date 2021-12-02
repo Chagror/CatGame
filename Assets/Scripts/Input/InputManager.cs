@@ -22,6 +22,8 @@ public class InputManager : MonoBehaviour
 
     public DataInput SO_DataInput;
 
+    [SerializeField]
+    private CommandList commands;
     private List<Player> _playerList;
     private void Start()
     {
@@ -72,6 +74,19 @@ public class InputManager : MonoBehaviour
                 player.transform.position = new Vector3(tempPos.x, tempPos.y, tempPos.z - player.GetJumpSize());
             }
         }
+    }
+    
+    public void doAction(int id,string command)
+    {
+        Player player = _playerList.Find(p => p.GetID() == id);
+        if (player == null)
+        {
+            Debug.LogError("Player not found");
+            return;
+        }
+        Action action = commands.Find(command);
+        if (action != null)
+            action.Execute(player);
     }
 
     public void Test()
