@@ -20,6 +20,8 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private GameEvent _event;
 
+    public DataInput SO_DataInput;
+
     private List<Player> _playerList;
     private void Start()
     {
