@@ -22,16 +22,16 @@ public class PlayerInput : MonoBehaviour
         _input = new Input();
 
         _input.Gameplay.Up.performed += ctx =>
-            _inputManager.GoUp(1);
+            _inputManager.doAction(1,"u");
         
          _input.Gameplay.Down.performed += ctx =>
-            _inputManager.GoDown(1);
+            _inputManager.doAction(1,"d");
          
          _input.Gameplay.Left.performed += ctx =>
-            _inputManager.GoLeft(1);
+            _inputManager.doAction(1,"l");
          
          _input.Gameplay.Right.performed += ctx =>
-            _inputManager.GoRight(1);
+            _inputManager.doAction(1,"r");
          _input.Gameplay.Test.performed += ctx =>
              _inputManager.Test();
           

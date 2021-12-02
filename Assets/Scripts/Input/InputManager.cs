@@ -20,6 +20,8 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private GameEvent _event;
 
+    [SerializeField]
+    private CommandList commands;
     private List<Player> _playerList;
     private void Start()
     {
@@ -27,49 +29,17 @@ public class InputManager : MonoBehaviour
         _playerList = PlayerManager.instance.players;
     }
 
-    public void GoUp(int id)
+    public void doAction(int id,string command)
     {
-        foreach (Player player in _playerList)
+        Player player = _playerList.Find(p => p.GetID() == id);
+        if (player == null)
         {
-            if (player.GetID() == id)
-            {
-                Vector3 tempPos = player.transform.position;
-                player.transform.position = new Vector3(tempPos.x, tempPos.y, tempPos.z + player.GetJumpSize());
-            }
+            Debug.LogError("Player not found");
+            return;
         }
-    }
-    public void GoLeft(int id)
-    {
-        foreach (Player player in _playerList)
-        {
-            if (player.GetID() == id)
-            {
-                Vector3 tempPos = player.transform.position;
-                player.transform.position = new Vector3(tempPos.x - player.GetJumpSize(), tempPos.y, tempPos.z);
-            }
-        }
-    }
-    public void GoRight(int id)
-    {
-        foreach (Player player in _playerList)
-        {
-            if (player.GetID() == id)
-            {
-                Vector3 tempPos = player.transform.position;
-                player.transform.position = new Vector3(tempPos.x + player.GetJumpSize(), tempPos.y, tempPos.z);
-            }
-        }
-    }
-    public void GoDown(int id)
-    {
-        foreach (Player player in _playerList)
-        {
-            if (player.GetID() == id)
-            {
-                Vector3 tempPos = player.transform.position;
-                player.transform.position = new Vector3(tempPos.x, tempPos.y, tempPos.z - player.GetJumpSize());
-            }
-        }
+        Action action = commands.Find(command);
+        if (action != null)
+            action.Execute(player);
     }
 
     public void Test()

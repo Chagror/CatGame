@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: 90034d966aa1cf349a0937343a040e07, type: 2}
+  commands: {fileID: 11400000, guid: 94038c114e401fc40b066b7dacf7cdb5, type: 2}
 --- !u!4 &1364208370
 Transform:
   m_ObjectHideFlags: 0
