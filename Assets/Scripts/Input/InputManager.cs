@@ -30,7 +30,15 @@ public class InputManager : MonoBehaviour
         _gameManager = GameManager.instance;
         _playerList = PlayerManager.instance.players;
     }
-
+    public void DoAction(int id, string command) 
+    {
+        Player player = _playerList.Find(p => p.GetID() == id);
+        if (player == null)
+            return;
+        Action action = commands.Find(command);
+        if (action != null)
+            action.Execute(player);
+    }
     public void GoUp(int id)
     {
         foreach (Player player in _playerList)
