@@ -30,60 +30,7 @@ public class InputManager : MonoBehaviour
         _gameManager = GameManager.instance;
         _playerList = PlayerManager.instance.players;
     }
-    public void DoAction(int id, string command) 
-    {
-        Player player = _playerList.Find(p => p.GetID() == id);
-        if (player == null)
-            return;
-        Action action = commands.Find(command);
-        if (action != null)
-            action.Execute(player);
-    }
-    public void GoUp(int id)
-    {
-        foreach (Player player in _playerList)
-        {
-            if (player.GetID() == id)
-            {
-                Vector3 tempPos = player.transform.position;
-                player.transform.position = new Vector3(tempPos.x, tempPos.y, tempPos.z + player.GetJumpSize());
-            }
-        }
-    }
-    public void GoLeft(int id)
-    {
-        foreach (Player player in _playerList)
-        {
-            if (player.GetID() == id)
-            {
-                Vector3 tempPos = player.transform.position;
-                player.transform.position = new Vector3(tempPos.x - player.GetJumpSize(), tempPos.y, tempPos.z);
-            }
-        }
-    }
-    public void GoRight(int id)
-    {
-        foreach (Player player in _playerList)
-        {
-            if (player.GetID() == id)
-            {
-                Vector3 tempPos = player.transform.position;
-                player.transform.position = new Vector3(tempPos.x + player.GetJumpSize(), tempPos.y, tempPos.z);
-            }
-        }
-    }
-    public void GoDown(int id)
-    {
-        foreach (Player player in _playerList)
-        {
-            if (player.GetID() == id)
-            {
-                Vector3 tempPos = player.transform.position;
-                player.transform.position = new Vector3(tempPos.x, tempPos.y, tempPos.z - player.GetJumpSize());
-            }
-        }
-    }
-    
+
     public void doAction(int id,string command)
     {
         Player player = _playerList.Find(p => p.GetID() == id);

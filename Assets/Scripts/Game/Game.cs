@@ -8,4 +8,22 @@ public class Game : ScriptableObject
     public int nbPlayers;
     public GameObject propertiesMenu;
     public int volume;
+    
+    [Header("Lobby")]
+    public float timerToJoin;
+
+    [Header("WaitForInput")] 
+    public float timerForInputs;
+
+    //[Header("Move")]
+    
+    //[Header("EndGame")]
+
+    public enum State
+    {
+        Lobby,
+        WaitForInput,
+        Move,
+        EndGame
+    };
 }

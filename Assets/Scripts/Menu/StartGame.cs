@@ -56,6 +56,7 @@ public class StartGame : MonoBehaviour
         levelSetup.sizeX = nbPlayers * 2;
         levelSetup.sizeY = nbPlayers * 2;
         _gameManager.SO.volume = PlayerPrefs.GetInt("Volume");
+        _gameManager.state = global::Game.State.Lobby;
         startMenu.SetActive(false);
         startGame.Raise();
     }

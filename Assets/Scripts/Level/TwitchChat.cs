@@ -13,6 +13,7 @@ public class TwitchChat : MonoBehaviour
     private StreamReader reader;
     private StreamWriter writer;
     private InputManager IM;
+    private GameManager GM;
     private Dictionary<string, string> CommandDictionary;
 
     public string username, password, channelName; //https://twitchapps.com/tmi
@@ -22,7 +23,8 @@ public class TwitchChat : MonoBehaviour
     {
         Connect();
         IM = InputManager.instance;
-        CommandDictionary = IM.SO_DataInput.commandsTwitch;
+        GM = GameManager.instance;
+        CommandDictionary = new Dictionary<string, string>();
     }
 
     // Update is called once per frame
@@ -54,13 +56,16 @@ public class TwitchChat : MonoBehaviour
         if (twitchClient.Available > 0)
         {
             var message = reader.ReadLine();
-
+            
             //Get infos of the message
             if (message == "")
                 return;
             
             if (message.Contains("PRIVMSG"))
             {
+                
+                Debug.Log(message);
+                
                 //Get username
                 var splitpoint = message.IndexOf("!", 1);
                 var chatName = message.Substring(0, splitpoint);
@@ -73,15 +78,16 @@ public class TwitchChat : MonoBehaviour
 
                 if (message[0] == '!')
                 {
-                    if (CommandDictionary.ContainsKey(chatName))
+                    /*if (CommandDictionary.ContainsKey(chatName))
                     {
                         message = message.Substring(1);
                         CommandDictionary[chatName] = message;
-                    }
+                    }*/
                     
                     //If will be replaced by So.list.contains
-                    if (message.Contains("join") || message.Contains("j"))
+                    if ((message.Contains("join") || message.Contains("j")) && GM.state == Game.State.Lobby)
                     {
+                        Debug.Log("yeeeeeeees");
                         CommandDictionary.Add(chatName, "");
                         //Call method to create prefab
                     }
@@ -93,5 +99,10 @@ public class TwitchChat : MonoBehaviour
     public Dictionary<string, string> GetDictionary()
     {
         return CommandDictionary;
+    }
+
+    public void PassDictionary()
+    {
+        IM.SO_DataInput.commandsTwitch = CommandDictionary;
     }
 }
