@@ -1260,6 +1260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listPlayers: {fileID: 1687169704}
   startGame: {fileID: 11400000, guid: a03e45fcef6cc4c4797c210bea7430cd, type: 2}
+  levelSetup: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
   startMenu: {fileID: 154253580}
   propertiesMenu: {fileID: 436052838}
 --- !u!4 &681504383

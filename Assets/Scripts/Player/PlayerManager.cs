@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     #endregion
     
     [SerializeField] private LevelSetup _levelSetup;
-    
+    [SerializeField] private Transform parent;
     [SerializeField] private GameObject _playerPrefabs;
     [SerializeField] private float _playerHeightSpawn;
     [SerializeField] public List<Player> players = new List<Player>();
@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
             pos.x  = _indexes[i][0] *_levelSetup.size + _indexes[i][0] * _levelSetup.gapSize ;
             pos.z = -(_indexes[i][1] * _levelSetup.size) - (_indexes[i][1] * _levelSetup.gapSize) ;
             pos.y = _playerHeightSpawn;
-            Player newPlayer = (Player)Instantiate(_playerPrefabs, pos, Quaternion.identity).GetComponent(typeof(Player));
+            Player newPlayer = (Player)Instantiate(_playerPrefabs, pos, Quaternion.identity,parent).GetComponent(typeof(Player));
             newPlayer.PlayerSetup(i+1, _indexes[i][0], _indexes[i][1], _levelSetup.size+ _levelSetup.gapSize);
             players.Add(newPlayer);
         }

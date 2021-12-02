@@ -24,11 +24,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerManager _playerManager;
     public LevelSetup SO_levelManager;
 
-    // Start is called before the first frame update
-    public void Start()
-    {
-        StartGame();
-    }
     public void StartGame()
     {
         _map.createTileMap();

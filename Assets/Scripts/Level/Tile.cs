@@ -23,7 +23,7 @@ public class Tile : MonoBehaviour
         Vector3 pos = new Vector3();
         pos.z = -_poseY * _tileSize - _poseY * gapSize;
         pos.x = _poseX * _tileSize + _poseX * gapSize;
-        _tileObject = Instantiate(_tileObject, pos, Quaternion.identity);
+        _tileObject = Instantiate(_tileObject, pos, Quaternion.identity,parent);
         Vector3 scale = _tileObject.transform.localScale;
         scale.z = scale.z * _tileSize;
         scale.x = scale.x * _tileSize;
