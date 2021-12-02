@@ -9,5 +9,6 @@ public class LevelSetup : ScriptableObject
     public int sizeY;
     public float gapSize;
     public GameObject tileObject;
-    public float  size;
+    public float size;
+    public Dictionary<int, string> commands;
 }

@@ -1,19 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
+    #region Singleton
+    public static LevelManager instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+            Destroy(this);
+        else
+            instance = this;
+    }
+    #endregion
+
     [SerializeField] private TileMap _map;
     [SerializeField] private Game _gameSetup;
     [SerializeField] private int _nbreOfRandomIds;
     [SerializeField] private PlayerManager _playerManager;
+    public LevelSetup SO_levelManager;
 
-    // Start is called before the first frame update
-    public void Start()
-    {
-        StartGame();
-    }
     public void StartGame()
     {
         _map.createTileMap();

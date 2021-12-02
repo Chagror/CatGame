@@ -123,6 +123,66 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &458807111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 458807112}
+  m_Layer: 0
+  m_Name: Players
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &458807112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458807111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &744550487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 744550488}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &744550488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744550487}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1249960298
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +288,7 @@ GameObject:
   - component: {fileID: 1807800318}
   - component: {fileID: 1807800321}
   - component: {fileID: 1807800320}
+  - component: {fileID: 1807800323}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -247,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7212052f49aa8754e91cac76dd672d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentTile: {fileID: 1807800319}
+  parentTile: {fileID: 744550488}
   _levelSetup: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
   _map: []
 --- !u!4 &1807800319
@@ -280,6 +341,7 @@ MonoBehaviour:
   _gameSetup: {fileID: 11400000, guid: ebbb81000c92fcc40a65a0f7bc788eca, type: 2}
   _nbreOfRandomIds: 10
   _playerManager: {fileID: 1807800321}
+  SO_levelManager: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
 --- !u!114 &1807800321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +355,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelSetup: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
+  parent: {fileID: 458807112}
   _playerPrefabs: {fileID: 2904882857119786692, guid: fa9de6d0711a7f84aa2db4b3a09dcb3b, type: 3}
   _playerHeightSpawn: 1
-  _players: []
+  players: []
+--- !u!114 &1807800323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807800317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426c60598433ff94481a2bcd28a3ff9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: a03e45fcef6cc4c4797c210bea7430cd, type: 2}
+  _onEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1807800320}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

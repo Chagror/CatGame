@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,15 @@ public class TileMap : MonoBehaviour
     [SerializeField] private Transform parentTile;
     [SerializeField] private LevelSetup _levelSetup;
     [SerializeField] private List<Tile> _map;
+    private Camera levelCamera;
+    private LevelManager _levelManager;
+
+    private void Start()
+    {
+        levelCamera = Camera.main;
+        _levelManager = LevelManager.instance;
+    }
+
     public void  createTileMap() 
     {
         for (int i = 0; i < _levelSetup.sizeY; i++)
@@ -18,7 +28,14 @@ public class TileMap : MonoBehaviour
         }
 
         Draw(_levelSetup.gapSize);
+        float tempX = ((_levelManager.SO_levelManager.sizeX * _levelManager.SO_levelManager.size) +
+                       ((_levelManager.SO_levelManager.sizeX - 1) * _levelManager.SO_levelManager.gapSize)) /2;
+        float tempZ = ((_levelManager.SO_levelManager.sizeY * _levelManager.SO_levelManager.size) +
+                       ((_levelManager.SO_levelManager.sizeY - 1) * _levelManager.SO_levelManager.gapSize)) /2;
+        
+        levelCamera.transform.position = new Vector3(tempX, 64.5f, -tempZ);
     }
+    
     private void Draw(float gapSize)
     {
         foreach (var tile in _map)

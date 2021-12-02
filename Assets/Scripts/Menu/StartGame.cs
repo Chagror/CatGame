@@ -10,6 +10,7 @@ public class StartGame : MonoBehaviour
     //Dropdown of the menu
     [SerializeField] private Dropdown listPlayers;
     [SerializeField] private GameEvent startGame;
+    [SerializeField] private LevelSetup levelSetup;
     private int nbPlayers; 
 
     //Both ref to the menus
@@ -52,6 +53,8 @@ public class StartGame : MonoBehaviour
         }
 
         _gameManager.SO.nbPlayers = nbPlayers;
+        levelSetup.sizeX = nbPlayers * 2;
+        levelSetup.sizeY = nbPlayers * 2;
         _gameManager.SO.volume = PlayerPrefs.GetInt("Volume");
         startMenu.SetActive(false);
         startGame.Raise();
