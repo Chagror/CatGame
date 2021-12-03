@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
         _posX = posX;
         _posY = posY;
         _jumpSize = jumpSize;
-
     }
 
     public int GetID()

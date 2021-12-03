@@ -51,5 +51,6 @@ public class InputManager : MonoBehaviour
     public void Pause()
     {
         _gameManager.SO.propertiesMenu.SetActive(!_gameManager.SO.propertiesMenu.activeSelf);
+        _gameManager.SO.gameHud.SetActive(!_gameManager.SO.propertiesMenu.activeSelf);
     }
 }

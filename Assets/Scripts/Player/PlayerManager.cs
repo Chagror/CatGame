@@ -46,6 +46,7 @@ public class PlayerManager : MonoBehaviour
             _indexes.Add(index);
         }
     }
+
     public void InstanciatePlayer() 
     {
         if (_indexes.Count == 0)
