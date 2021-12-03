@@ -6,12 +6,17 @@ using UnityEngine;
 public class Game : ScriptableObject
 {
     public int nbPlayers;
-    public GameObject propertiesMenu;
     public int nbrePlayerControlledWithKeyBoard;
     public int volume;
     
+    [Header("Menus")]
+    public GameObject startMenu;
+    public GameObject propertiesMenu;
+    public GameObject gameHud;
+
     [Header("Lobby")]
     public float timerToJoin;
+    public GameObject timerObject;
 
     [Header("WaitForInput")] 
     public float timerForInputs;
@@ -22,6 +27,7 @@ public class Game : ScriptableObject
 
     public enum State
     {
+        Start,
         Lobby,
         WaitForInput,
         Move,
