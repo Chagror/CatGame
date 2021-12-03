@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: SO_Game
   m_EditorClassIdentifier: 
   nbPlayers: 4
-  volume: 0
+  nbrePlayerControlledWithKeyBoard: 0
+  volume: 35
   startMenu: {fileID: 0}
   propertiesMenu: {fileID: 0}
   gameHud: {fileID: 0}
-  timerToJoin: 60
+  timerToJoin: 5
   timerObject: {fileID: 0}
-
-  nbrePlayerControlledWithKeyBoard: 1
   timerForInputs: 0
