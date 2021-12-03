@@ -9,7 +9,6 @@ public class StartGame : MonoBehaviour
 {
     //Dropdown of the menu
     [SerializeField] private Dropdown listPlayers;
-    [SerializeField] private GameEvent startGame;
     [SerializeField] private LevelSetup levelSetup;
     private int nbPlayers; 
 
@@ -72,7 +71,6 @@ public class StartGame : MonoBehaviour
         _gameManager.SO.volume = PlayerPrefs.GetInt("Volume");
         _gameManager.state = global::Game.State.Lobby;
         startMenu.SetActive(false);
-        startGame.Raise();
     }
 
     public void Quit()

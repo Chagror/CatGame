@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
     public Game SO;
     public Game.State state;
 
+    [SerializeField] private GameEvent startGame;
+
     private float tempTimer;
+    private float tempTimerInput;
 
     private void Awake()
     {
@@ -53,13 +56,16 @@ public class GameManager : MonoBehaviour
 
         if (SO.timerToJoin < 0)
         {
+            startGame.Raise();
             state = Game.State.WaitForInput;
         }
     }
 
     private void WaitForInput()
     {
+        tempTimerInput = SO.timerForInputs;
 
+        tempTimerInput -= Time.deltaTime;
     }
 
     private void Move()

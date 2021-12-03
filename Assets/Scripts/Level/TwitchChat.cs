@@ -89,7 +89,9 @@ public class TwitchChat : MonoBehaviour
                     {
                         Debug.Log("yeeeeeeees");
                         CommandDictionary.Add(chatName, "");
+
                         //Call method to create prefab
+
                     }
                 }
             }
