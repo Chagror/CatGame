@@ -1,12 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    #region Singleton
+    [SerializeField] private CommandToExecute _commandToExecute;
     public static InputManager instance;
+    #region Singleton
     private void Awake()
     {
         if (instance)
@@ -15,41 +15,16 @@ public class InputManager : MonoBehaviour
             instance = this;
     }
     #endregion
-
-    private GameManager _gameManager;
-    [SerializeField]
-    private GameEvent _event;
-
-    public DataInput SO_DataInput;
-
-    [SerializeField]
-    private CommandList commands;
-    private List<Player> _playerList;
-    private void Start()
+    public void Update()
     {
-        _gameManager = GameManager.instance;
-        _playerList = PlayerManager.instance.players;
+        Execute();
+        _commandToExecute.CommandPerPlayer = new Dictionary<Player, Action>();
     }
-
-    public void doAction(int id,string command)
+    public void Execute()
     {
-        Player player = _playerList.Find(p => p.GetID() == id);
-        if (player == null)
+        foreach (KeyValuePair<Player, Action> command in _commandToExecute.CommandPerPlayer)
         {
-            Debug.LogError("Player not found");
-            return;
+            command.Value.Execute(command.Key);
         }
-        Action action = commands.Find(command);
-        if (action != null)
-            action.Execute(player);
-    }
-
-    public void Test()
-    {
-        _event.Raise();
-    }
-    public void Pause()
-    {
-        _gameManager.SO.propertiesMenu.SetActive(!_gameManager.SO.propertiesMenu.activeSelf);
     }
 }

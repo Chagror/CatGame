@@ -7,6 +7,7 @@ public class Game : ScriptableObject
 {
     public int nbPlayers;
     public GameObject propertiesMenu;
+    public int nbrePlayerControlledWithKeyBoard;
     public int volume;
     
     [Header("Lobby")]

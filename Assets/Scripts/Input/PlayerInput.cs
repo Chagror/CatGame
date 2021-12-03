@@ -5,7 +5,7 @@ public class PlayerInput : MonoBehaviour
 {
     private Input _input;
 
-    private InputManager _inputManager;
+    private KeyBoardInputManager _inputManager;
 
     private void Awake()
     {
@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
-        _inputManager = InputManager.instance;
+        _inputManager = KeyBoardInputManager.instance;
     }
 
     private void InputDelegate()
@@ -22,20 +22,20 @@ public class PlayerInput : MonoBehaviour
         _input = new Input();
 
         _input.Gameplay.Up.performed += ctx =>
-            _inputManager.doAction(1,"u");
-        
-         _input.Gameplay.Down.performed += ctx =>
-            _inputManager.doAction(1,"d");
-         
-         _input.Gameplay.Left.performed += ctx =>
-            _inputManager.doAction(1,"l");
-         
-         _input.Gameplay.Right.performed += ctx =>
-            _inputManager.doAction(1,"r");
-         _input.Gameplay.Test.performed += ctx =>
-             _inputManager.Test();
-          
-         _input.Menu.PauseMenu.performed += ctx =>
+            _inputManager.GoUp(0);
+
+        _input.Gameplay.Down.performed += ctx =>
+           _inputManager.GoDown(0);
+
+        _input.Gameplay.Left.performed += ctx =>
+           _inputManager.GoLeft(0);
+
+        _input.Gameplay.Right.performed += ctx =>
+           _inputManager.GoRight(0);
+        _input.Gameplay.Test.performed += ctx =>
+            _inputManager.Test();
+
+        _input.Menu.PauseMenu.performed += ctx =>
              _inputManager.Pause();
 
          _input.Gameplay.Enable();

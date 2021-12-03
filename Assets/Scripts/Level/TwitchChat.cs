@@ -12,8 +12,10 @@ public class TwitchChat : MonoBehaviour
     private TcpClient twitchClient;
     private StreamReader reader;
     private StreamWriter writer;
-    private InputManager IM;
+    [SerializeField]
+    private TwitchInputManager IM;
     private GameManager GM;
+    [SerializeField] private CommandReadedFromTwitch _commandReaded;
     private Dictionary<string, string> CommandDictionary;
 
     public string username, password, channelName; //https://twitchapps.com/tmi
@@ -22,7 +24,6 @@ public class TwitchChat : MonoBehaviour
     void Start()
     {
         Connect();
-        IM = InputManager.instance;
         GM = GameManager.instance;
         CommandDictionary = new Dictionary<string, string>();
     }
@@ -103,6 +104,7 @@ public class TwitchChat : MonoBehaviour
 
     public void PassDictionary()
     {
-        IM.SO_DataInput.commandsTwitch = CommandDictionary;
+        _commandReaded.CommandPerPlayer = CommandDictionary;
+        IM.Notify();
     }
 }
