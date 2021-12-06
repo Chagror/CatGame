@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class KeyBoardInputManager : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class KeyBoardInputManager : MonoBehaviour
     [SerializeField]
     private GameEvent _event;
     [SerializeField]
-    private Game _game;
+    private Game _gameData;
 
     [SerializeField] private CommandToExecute _commandToExecute;
     private List<Player> _playerList;
@@ -40,7 +41,7 @@ public class KeyBoardInputManager : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.instance;
-        _nbrePlayerControlledWithKeyBoard = _game.nbrePlayerControlledWithKeyBoard;
+        _nbrePlayerControlledWithKeyBoard = _gameData.nbrePlayerControlledWithKeyBoard;
         _playerList = PlayerManager.instance.players;
         
     }
@@ -75,6 +76,6 @@ public class KeyBoardInputManager : MonoBehaviour
     }
     public void Pause()
     {
-        _gameManager.SO.propertiesMenu.SetActive(!_gameManager.SO.propertiesMenu.activeSelf);
+        _gameManager._gameData.propertiesMenu.SetActive(!_gameManager._gameData.propertiesMenu.activeSelf);
     }
 }

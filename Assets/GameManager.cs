@@ -1,10 +1,21 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
+    #region Singleton
     public static GameManager instance;
-    public Game SO;
+    private void Awake()
+    {
+        if (instance)
+            Destroy(this);
+        else
+            instance = this;
+    }
+    #endregion
+    
+    public Game _gameData;
     public Game.State state;
 
     [SerializeField] private GameEvent startGame;
@@ -12,17 +23,9 @@ public class GameManager : MonoBehaviour
     private float tempTimer;
     private float tempTimerInput;
 
-    private void Awake()
-    {
-        if(instance)
-            Destroy(instance);
-        else
-            instance = this;
-    }
-
     private void Start()
     {
-        tempTimer = SO.timerToJoin;
+        tempTimer = _gameData.timerToJoin;
     }
 
     private void Update()
@@ -48,13 +51,13 @@ public class GameManager : MonoBehaviour
     #region States methods
     private void Lobby()
     {
-        SO.startMenu.SetActive(false);
-        SO.gameHud.SetActive(true);
+        _gameData.startMenu.SetActive(false);
+        _gameData.gameHud.SetActive(true);
         
         tempTimer -= Time.deltaTime;
-        SO.timerObject.GetComponent<TextMeshProUGUI>().text = "Timer to join : " + (int)tempTimer;
+        _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Timer to join : " + (int)tempTimer;
 
-        if (SO.timerToJoin < 0)
+        if (_gameData.timerToJoin < 0)
         {
             startGame.Raise();
             state = Game.State.WaitForInput;
@@ -63,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     private void WaitForInput()
     {
-        tempTimerInput = SO.timerForInputs;
+        tempTimerInput = _gameData.timerForInputs;
 
         tempTimerInput -= Time.deltaTime;
     }
@@ -75,8 +78,8 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        SO.startMenu.SetActive(true);
-        SO.gameHud.SetActive(false);
+        _gameData.startMenu.SetActive(true);
+        _gameData.gameHud.SetActive(false);
     }
 
     private void StartGame()

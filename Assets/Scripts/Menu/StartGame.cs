@@ -24,10 +24,10 @@ public class StartGame : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.instance;
-        _gameManager.SO.startMenu = startMenu;
-        _gameManager.SO.propertiesMenu = propertiesMenu;
-        _gameManager.SO.gameHud = gameMenu;
-        _gameManager.SO.timerObject = timerHud;
+        _gameManager._gameData.startMenu = startMenu;
+        _gameManager._gameData.propertiesMenu = propertiesMenu;
+        _gameManager._gameData.gameHud = gameMenu;
+        _gameManager._gameData.timerObject = timerHud;
     }
 
     public void Game()
@@ -67,8 +67,8 @@ public class StartGame : MonoBehaviour
             default: break;
         }
 
-        _gameManager.SO.nbPlayers = nbPlayers;
-        _gameManager.SO.volume = PlayerPrefs.GetInt("Volume");
+        _gameManager._gameData.nbPlayers = nbPlayers;
+        _gameManager._gameData.volume = PlayerPrefs.GetInt("Volume");
         _gameManager.state = global::Game.State.Lobby;
         startMenu.SetActive(false);
     }

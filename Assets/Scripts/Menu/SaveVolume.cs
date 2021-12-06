@@ -14,7 +14,7 @@ public class SaveVolume : MonoBehaviour
     {
         //Get the instance and set the volume by reading at the SO
         _gameManager = GameManager.instance;
-        slider.value = _gameManager.SO.volume;
+        slider.value = _gameManager._gameData.volume;
     }
 
     //Used by the button
@@ -22,7 +22,7 @@ public class SaveVolume : MonoBehaviour
     {
         volume = (int)slider.value;
 
-        _gameManager.SO.volume = volume;
+        _gameManager._gameData.volume = volume;
         PlayerPrefs.SetInt("Volume", volume);
         PlayerPrefs.Save();
     }
