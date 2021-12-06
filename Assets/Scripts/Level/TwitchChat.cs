@@ -6,17 +6,18 @@ using System.ComponentModel;
 using System.Net.Sockets;
 using System.IO;
 using System.Linq;
+using UnityEngine.Serialization;
 
 public class TwitchChat : MonoBehaviour
 {
-    private TcpClient twitchClient;
-    private StreamReader reader;
-    private StreamWriter writer;
+    private TcpClient _twitchClient;
+    private StreamReader _reader;
+    private StreamWriter _writer;
     [SerializeField]
-    private TwitchInputManager IM;
-    private GameManager GM;
+    private TwitchInputManager _twitchInputManager;
+    private GameManager _gameManager;
     [SerializeField] private CommandReadedFromTwitch _commandReaded;
-    private Dictionary<string, string> CommandDictionary;
+    private Dictionary<string, string> _commandDictionary;
 
     public string username, password, channelName; //https://twitchapps.com/tmi
 
@@ -24,14 +25,14 @@ public class TwitchChat : MonoBehaviour
     void Start()
     {
         Connect();
-        GM = GameManager.instance;
-        CommandDictionary = new Dictionary<string, string>();
+        _gameManager = GameManager.instance;
+        _commandDictionary = new Dictionary<string, string>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!twitchClient.Connected)
+        if (!_twitchClient.Connected)
             Connect();
 
         ReadChat();
@@ -39,24 +40,24 @@ public class TwitchChat : MonoBehaviour
 
     private void Connect()
     {
-        twitchClient = new TcpClient("irc.chat.twitch.tv", 6667);
-        reader = new StreamReader(twitchClient.GetStream());
-        writer = new StreamWriter(twitchClient.GetStream());
+        _twitchClient = new TcpClient("irc.chat.twitch.tv", 6667);
+        _reader = new StreamReader(_twitchClient.GetStream());
+        _writer = new StreamWriter(_twitchClient.GetStream());
 
-        writer.WriteLine("PASS " + password);
-        writer.WriteLine("NICK " + username);
-        writer.WriteLine("USER " + username + " 8 * :" + username);
-        writer.WriteLine("JOIN #" + channelName);
-        writer.Flush();
+        _writer.WriteLine("PASS " + password);
+        _writer.WriteLine("NICK " + username);
+        _writer.WriteLine("USER " + username + " 8 * :" + username);
+        _writer.WriteLine("JOIN #" + channelName);
+        _writer.Flush();
     }
 
     private void ReadChat()
     {
         //Debug.Log("read");
 
-        if (twitchClient.Available > 0)
+        if (_twitchClient.Available > 0)
         {
-            var message = reader.ReadLine();
+            var message = _reader.ReadLine();
             
             //Get infos of the message
             if (message == "")
@@ -86,10 +87,10 @@ public class TwitchChat : MonoBehaviour
                     }*/
                     
                     //If will be replaced by So.list.contains
-                    if ((message.Contains("join") || message.Contains("j")) && GM.state == Game.State.Lobby)
+                    if ((message.Contains("join") || message.Contains("j")) && _gameManager.state == Game.State.Lobby)
                     {
                         Debug.Log("yeeeeeeees");
-                        CommandDictionary.Add(chatName, "");
+                        _commandDictionary.Add(chatName, "");
 
                         //Call method to create prefab
 
@@ -101,12 +102,12 @@ public class TwitchChat : MonoBehaviour
 
     public Dictionary<string, string> GetDictionary()
     {
-        return CommandDictionary;
+        return _commandDictionary;
     }
 
     public void PassDictionary()
     {
-        _commandReaded.CommandPerPlayer = CommandDictionary;
-        IM.Notify();
+        _commandReaded.CommandPerPlayer = _commandDictionary;
+        _twitchInputManager.Notify();
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class KeyboardInput : MonoBehaviour
 {
     private Input _input;
 
@@ -32,6 +32,7 @@ public class PlayerInput : MonoBehaviour
 
         _input.Gameplay.Right.performed += ctx =>
            _inputManager.GoRight(0);
+        
         _input.Gameplay.Test.performed += ctx =>
             _inputManager.Test();
 

@@ -19,16 +19,14 @@ public class PlayerManager : MonoBehaviour
     #endregion
     
     [SerializeField] private LevelSetup _levelSetup;
-    [SerializeField] private Transform parent;
+    [SerializeField] private Transform _parent;
     [SerializeField] private GameObject _playerPrefabs;
     [SerializeField] private float _playerHeightSpawn;
     [SerializeField] public List<Player> players = new List<Player>();
-    private List<string> _ids = new List<string>();
     private List<int[]> _indexes = new List<int[]>();
 
-    public void randomSpawn(int nbrePlayer, TileMap map)
+    private void RandomSpawn(int nbrePlayer, TileMap map)
     {
-        List<GameObject> players = new List<GameObject>();
         _indexes = new List<int[]>();
         _levelSetup = map.GetLevelSetup();
         int mapSizeX = _levelSetup.sizeX;
@@ -47,11 +45,11 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void InstanciatePlayer() 
+    private void InstantiatePlayer() 
     {
         if (_indexes.Count == 0)
         {
-            Debug.LogError("No player to intanciate need to spawn before");
+            Debug.LogError("No player to instantiate need to spawn before");
         }
         for (int i = 0; i < _indexes.Count; i++ ) 
         {
@@ -59,7 +57,7 @@ public class PlayerManager : MonoBehaviour
             pos.x  = _indexes[i][0] *_levelSetup.size + _indexes[i][0] * _levelSetup.gapSize ;
             pos.z = -(_indexes[i][1] * _levelSetup.size) - (_indexes[i][1] * _levelSetup.gapSize) ;
             pos.y = _playerHeightSpawn;
-            Player newPlayer = (Player)Instantiate(_playerPrefabs, pos, Quaternion.identity,parent).GetComponent(typeof(Player));
+            Player newPlayer = (Player)Instantiate(_playerPrefabs, pos, Quaternion.identity,_parent).GetComponent(typeof(Player));
             newPlayer.PlayerSetup(i+1, _indexes[i][0], _indexes[i][1], _levelSetup.size+ _levelSetup.gapSize);
             players.Add(newPlayer);
         }
@@ -67,7 +65,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void LaunchGameWithRandomSpawn(int nbrePlayer, TileMap map) 
     {
-        randomSpawn(nbrePlayer,map);
-        InstanciatePlayer();
+        RandomSpawn(nbrePlayer,map);
+        InstantiatePlayer();
     }
 }

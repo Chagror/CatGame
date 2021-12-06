@@ -15,6 +15,7 @@ public class KeyBoardInputManager : MonoBehaviour
             instance = this;
     }
     #endregion
+    
     #region Actions
     [SerializeField]
     private Action _actionGoUp;
@@ -31,7 +32,6 @@ public class KeyBoardInputManager : MonoBehaviour
     private GameEvent _event;
     [SerializeField]
     private Game _game;
-    public DataInput SO_DataInput;
 
     [SerializeField] private CommandToExecute _commandToExecute;
     private List<Player> _playerList;
@@ -47,8 +47,7 @@ public class KeyBoardInputManager : MonoBehaviour
 
     public void GoUp(int id)
     {
-        Debug.Log("up");
-        if(id< _playerList.Count) 
+        if(id < _playerList.Count) 
             _commandToExecute.CommandPerPlayer.Add(_playerList[id], _actionGoUp);
     }
     public void GoLeft(int id)
