@@ -3,14 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
     //Dropdown of the menu
-    [SerializeField] private Dropdown listPlayers;
+    [SerializeField] private Dropdown dropdownNbPlayer;
+    [SerializeField] private Dropdown dropdownNbPlayerTotal;
     [SerializeField] private LevelSetup levelSetup;
-    private int nbPlayers; 
+    private int nbPlayers;
+    private int nbPlayersKeyboard;
 
     //Both ref to the menus
     [SerializeField] private GameObject startMenu;
@@ -32,7 +35,21 @@ public class StartGame : MonoBehaviour
 
     public void Game()
     {
-        switch (listPlayers.value)
+        switch (dropdownNbPlayerTotal.value)
+        {
+            case 0:
+                nbPlayersKeyboard = 0;
+                break;
+            case 1:
+                nbPlayersKeyboard = 1;
+                break;
+            case 2:
+                nbPlayersKeyboard = 2;
+                break;
+            default: break;
+        }
+        
+        switch (dropdownNbPlayer.value)
         {
             case 0 :
                 nbPlayers = 4;
@@ -69,8 +86,8 @@ public class StartGame : MonoBehaviour
 
         _gameManager._gameData.nbPlayers = nbPlayers;
         _gameManager._gameData.volume = PlayerPrefs.GetInt("Volume");
+        
         _gameManager.state = global::Game.State.Lobby;
-        startMenu.SetActive(false);
     }
 
     public void Quit()

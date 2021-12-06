@@ -21,7 +21,7 @@ public class TwitchInputManager : MonoBehaviour
         foreach (KeyValuePair<string, string> command in _commandReaded.CommandPerPlayer)
         {
             //_commandToExecute.CommandPerPlayer.Add();
-            Player player = _playerList.Find(p => p.GetID().ToString() == command.Key);
+            Player player = _playerList.Find(p => p.GetName().Equals(command.Key));
             if (player == null)
             {
                 Debug.LogError("Player not found");

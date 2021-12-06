@@ -27,6 +27,6 @@ public class LevelManager : MonoBehaviour
     public void StartGame()
     {
         _map.createTileMap();
-        _playerManager.LaunchGameWithRandomSpawn(_gameData.nbPlayers, _map);
+        _playerManager.RandomizeSpawn(_gameData.nbPlayers, _map);
     }
 }

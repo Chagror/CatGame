@@ -16,6 +16,7 @@ public class TwitchChat : MonoBehaviour
     [SerializeField]
     private TwitchInputManager _twitchInputManager;
     private GameManager _gameManager;
+    private PlayerManager _playerManager;
     [SerializeField] private CommandReadedFromTwitch _commandReaded;
     private Dictionary<string, string> _commandDictionary;
 
@@ -26,6 +27,7 @@ public class TwitchChat : MonoBehaviour
     {
         Connect();
         _gameManager = GameManager.instance;
+        _playerManager = PlayerManager.instance;
         _commandDictionary = new Dictionary<string, string>();
     }
 
@@ -86,14 +88,10 @@ public class TwitchChat : MonoBehaviour
                         CommandDictionary[chatName] = message;
                     }*/
                     
-                    //If will be replaced by So.list.contains
                     if ((message.Contains("join") || message.Contains("j")) && _gameManager.state == Game.State.Lobby)
                     {
-                        Debug.Log("yeeeeeeees");
-                        _commandDictionary.Add(chatName, "");
-
                         //Call method to create prefab
-
+                        _playerManager.InstantiatePlayer(chatName);
                     }
                 }
             }

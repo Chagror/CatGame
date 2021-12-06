@@ -36,40 +36,35 @@ public class KeyBoardInputManager : MonoBehaviour
 
     [SerializeField] private CommandToExecute _commandToExecute;
     private List<Player> _playerList;
-    [SerializeField] private int _nbrePlayerControlledWithKeyBoard = 2;
     
     private void Start()
     {
         _gameManager = GameManager.instance;
-        _nbrePlayerControlledWithKeyBoard = _gameData.nbrePlayerControlledWithKeyBoard;
         _playerList = PlayerManager.instance.players;
         
     }
 
-    public void GoUp(int id)
+    public void GoUp(int playerNumber)
     {
-        if(id < _playerList.Count) 
-            _commandToExecute.CommandPerPlayer.Add(_playerList[id], _actionGoUp);
+        if(playerNumber < _playerList.Count) 
+            _commandToExecute.CommandPerPlayer.Add(_playerList[playerNumber], _actionGoUp);
     }
-    public void GoLeft(int id)
+    public void GoLeft(int playerNumber)
     {
-        if (id < _playerList.Count)
-            _commandToExecute.CommandPerPlayer.Add(_playerList[id], _actionGoLeft);
+        if (playerNumber < _playerList.Count)
+            _commandToExecute.CommandPerPlayer.Add(_playerList[playerNumber], _actionGoLeft);
     }
-    public void GoRight(int id)
+    public void GoRight(int playerNumber)
     {
-        if (id < _playerList.Count)
-            _commandToExecute.CommandPerPlayer.Add(_playerList[id], _actionGoRight);
+        if (playerNumber < _playerList.Count)
+            _commandToExecute.CommandPerPlayer.Add(_playerList[playerNumber], _actionGoRight);
     }
-    public void GoDown(int id)
+    public void GoDown(int playerNumber)
     {
-        if (id < _playerList.Count)
-            _commandToExecute.CommandPerPlayer.Add(_playerList[id], _actionGoDown);
+        if (playerNumber < _playerList.Count)
+            _commandToExecute.CommandPerPlayer.Add(_playerList[playerNumber], _actionGoDown);
     }
-
-
-
-
+    
     public void Test()
     {
         _event.Raise();

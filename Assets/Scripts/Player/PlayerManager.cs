@@ -23,16 +23,22 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject _playerPrefabs;
     [SerializeField] private float _playerHeightSpawn;
     [SerializeField] public List<Player> players = new List<Player>();
+    private GameManager _gameManager;
     private List<int[]> _indexes = new List<int[]>();
 
-    private void RandomSpawn(int nbrePlayer, TileMap map)
+    private void Start()
+    {
+        _gameManager = GameManager.instance;
+    }
+
+    public void RandomizeSpawn(int nbPlayer, TileMap map)
     {
         _indexes = new List<int[]>();
         _levelSetup = map.GetLevelSetup();
         int mapSizeX = _levelSetup.sizeX;
         int mapSizeY = _levelSetup.sizeY;
 
-        for (int i = 0; i < nbrePlayer; i++) 
+        for (int i = 0; i < nbPlayer; i++) 
         {
             int[] index = new int[2];
             do
@@ -45,27 +51,19 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void InstantiatePlayer() 
+    public void InstantiatePlayer(string playerName)
     {
-        if (_indexes.Count == 0)
-        {
-            Debug.LogError("No player to instantiate need to spawn before");
-        }
-        for (int i = 0; i < _indexes.Count; i++ ) 
-        {
-            Vector3 pos = new Vector3();
-            pos.x  = _indexes[i][0] *_levelSetup.size + _indexes[i][0] * _levelSetup.gapSize ;
-            pos.z = -(_indexes[i][1] * _levelSetup.size) - (_indexes[i][1] * _levelSetup.gapSize) ;
-            pos.y = _playerHeightSpawn;
-            Player newPlayer = (Player)Instantiate(_playerPrefabs, pos, Quaternion.identity,_parent).GetComponent(typeof(Player));
-            newPlayer.PlayerSetup(i+1, _indexes[i][0], _indexes[i][1], _levelSetup.size+ _levelSetup.gapSize);
-            players.Add(newPlayer);
-        }
-                 
-    }
-    public void LaunchGameWithRandomSpawn(int nbrePlayer, TileMap map) 
-    {
-        RandomSpawn(nbrePlayer,map);
-        InstantiatePlayer();
+        if (players.Count >= _gameManager._gameData.nbPlayers)
+            return;
+
+        Vector3 pos = new Vector3();
+        pos.x  = _indexes[players.Count][0] *_levelSetup.size + _indexes[players.Count][0] * _levelSetup.gapSize ;
+        pos.z = -(_indexes[players.Count][1] * _levelSetup.size) - (_indexes[players.Count][1] * _levelSetup.gapSize) ;
+        pos.y = _playerHeightSpawn;
+        Player newPlayer = (Player)Instantiate(_playerPrefabs, pos, Quaternion.identity,_parent).GetComponent(typeof(Player));
+        
+        newPlayer.PlayerSetup(playerName, _indexes[players.Count][0], _indexes[players.Count][1], _levelSetup.size+ _levelSetup.gapSize);
+        
+        players.Add(newPlayer);
     }
 }
