@@ -9,17 +9,18 @@ using UnityEngine.UI;
 public class StartGame : MonoBehaviour
 {
     //Dropdown of the menu
-    [SerializeField] private Dropdown dropdownNbPlayer;
-    [SerializeField] private Dropdown dropdownNbPlayerTotal;
-    [SerializeField] private LevelSetup levelSetup;
-    private int nbPlayers;
-    private int nbPlayersKeyboard;
+    [SerializeField] private Dropdown _dropdownNbPlayer;
+    [SerializeField] private Dropdown _dropdownNbPlayerTotal;
+    [SerializeField] private LevelSetup _levelSetup;
+    private int _nbPlayers;
+    private int _nbPlayersKeyboard;
 
     //Both ref to the menus
-    [SerializeField] private GameObject startMenu;
-    [SerializeField] private GameObject propertiesMenu;
-    [SerializeField] private GameObject gameMenu;
-    [SerializeField] private GameObject timerHud;
+    [SerializeField] private GameObject _startMenu;
+    [SerializeField] private GameObject _propertiesMenu;
+    [SerializeField] private GameObject _gameMenu;
+    [SerializeField] private GameObject _timerHud;
+    [SerializeField] private GameEvent _initialize; 
 
     //Ref to the script named "GameManager"
     private GameManager _gameManager;
@@ -27,66 +28,66 @@ public class StartGame : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.instance;
-        _gameManager._gameData.startMenu = startMenu;
-        _gameManager._gameData.propertiesMenu = propertiesMenu;
-        _gameManager._gameData.gameHud = gameMenu;
-        _gameManager._gameData.timerObject = timerHud;
+        _gameManager._gameData.startMenu = _startMenu;
+        _gameManager._gameData.propertiesMenu = _propertiesMenu;
+        _gameManager._gameData.gameHud = _gameMenu;
+        _gameManager._gameData.timerObject = _timerHud;
     }
 
     public void Game()
     {
-        switch (dropdownNbPlayerTotal.value)
+        switch (_dropdownNbPlayerTotal.value)
         {
             case 0:
-                nbPlayersKeyboard = 0;
+                _nbPlayersKeyboard = 0;
                 break;
             case 1:
-                nbPlayersKeyboard = 1;
+                _nbPlayersKeyboard = 1;
                 break;
             case 2:
-                nbPlayersKeyboard = 2;
+                _nbPlayersKeyboard = 2;
                 break;
             default: break;
         }
         
-        switch (dropdownNbPlayer.value)
+        switch (_dropdownNbPlayer.value)
         {
             case 0 :
-                nbPlayers = 4;
-                levelSetup.sizeX = nbPlayers * 2;
-                levelSetup.sizeY = nbPlayers * 2;
+                _nbPlayers = 4;
+                _levelSetup.sizeX = _nbPlayers * 2;
+                _levelSetup.sizeY = _nbPlayers * 2;
                 break;
             case 1 :
-                nbPlayers = 8;
-                levelSetup.sizeX = nbPlayers * 2;
-                levelSetup.sizeY = nbPlayers * 2;
+                _nbPlayers = 8;
+                _levelSetup.sizeX = _nbPlayers * 2;
+                _levelSetup.sizeY = _nbPlayers * 2;
                 break;
             case 2 :
-                nbPlayers = 16;
-                levelSetup.sizeX = nbPlayers;
-                levelSetup.sizeY = nbPlayers;
+                _nbPlayers = 16;
+                _levelSetup.sizeX = _nbPlayers;
+                _levelSetup.sizeY = _nbPlayers;
                 break;
             case 3 :
-                nbPlayers = 24;
-                levelSetup.sizeX = nbPlayers;
-                levelSetup.sizeY = nbPlayers;
+                _nbPlayers = 24;
+                _levelSetup.sizeX = _nbPlayers;
+                _levelSetup.sizeY = _nbPlayers;
                 break;
             case 4 :
-                nbPlayers = 32;
-                levelSetup.sizeX = nbPlayers;
-                levelSetup.sizeY = nbPlayers;
+                _nbPlayers = 32;
+                _levelSetup.sizeX = _nbPlayers;
+                _levelSetup.sizeY = _nbPlayers;
                 break;
             case 5 :
-                nbPlayers = 48;
-                levelSetup.sizeX = nbPlayers;
-                levelSetup.sizeY = nbPlayers;
+                _nbPlayers = 48;
+                _levelSetup.sizeX = _nbPlayers;
+                _levelSetup.sizeY = _nbPlayers;
                 break;
             default: break;
         }
 
-        _gameManager._gameData.nbPlayers = nbPlayers;
+        _gameManager._gameData.nbPlayers = _nbPlayers;
         _gameManager._gameData.volume = PlayerPrefs.GetInt("Volume");
-        
+        _initialize.Raise();
         _gameManager.state = global::Game.State.Lobby;
     }
 

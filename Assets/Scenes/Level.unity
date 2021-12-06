@@ -338,8 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 1807800318}
-  _gameSetup: {fileID: 11400000, guid: ebbb81000c92fcc40a65a0f7bc788eca, type: 2}
-  _nbreOfRandomIds: 10
+  _gameData: {fileID: 11400000, guid: ebbb81000c92fcc40a65a0f7bc788eca, type: 2}
   _playerManager: {fileID: 1807800321}
   SO_levelManager: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
 --- !u!114 &1807800321
@@ -355,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelSetup: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
-  parent: {fileID: 458807112}
+  _parent: {fileID: 0}
   _playerPrefabs: {fileID: 2904882857119786692, guid: fa9de6d0711a7f84aa2db4b3a09dcb3b, type: 3}
   _playerHeightSpawn: 1
   players: []
@@ -371,13 +370,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c60598433ff94481a2bcd28a3ff9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: a03e45fcef6cc4c4797c210bea7430cd, type: 2}
+  _event: {fileID: 11400000, guid: b538d9c0bfc602e4a80383fa49a7c077, type: 2}
   _onEventRaised:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1807800320}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: InitializeMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -57,9 +57,8 @@ public class GameManager : MonoBehaviour
         tempTimer -= Time.deltaTime;
         _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Timer to join : " + (int)tempTimer;
 
-        if (_gameData.timerToJoin < 0)
+        if (_gameData.timerToJoin <= 0)
         {
-            startGame.Raise();
             state = Game.State.WaitForInput;
         }
     }

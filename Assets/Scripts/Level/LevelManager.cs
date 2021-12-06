@@ -24,9 +24,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerManager _playerManager;
     public LevelSetup SO_levelManager;
 
-    public void StartGame()
+    public void InitializeMap()
     {
         _map.createTileMap();
-        _playerManager.RandomizeSpawn(_gameData.nbPlayers, _map);
+        //_playerManager.RandomizeSpawn(_gameData.nbPlayers, _map);
     }
 }

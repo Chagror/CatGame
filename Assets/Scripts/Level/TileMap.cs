@@ -28,10 +28,10 @@ public class TileMap : MonoBehaviour
         }
 
         Draw(_levelSetup.gapSize);
-        float tempX = ((_levelManager.SO_levelManager.sizeX * _levelManager.SO_levelManager.size) +
-                       ((_levelManager.SO_levelManager.sizeX - 1) * _levelManager.SO_levelManager.gapSize)) /2;
-        float tempZ = ((_levelManager.SO_levelManager.sizeY * _levelManager.SO_levelManager.size) +
-                       ((_levelManager.SO_levelManager.sizeY - 1) * _levelManager.SO_levelManager.gapSize)) /2;
+        float tempX = (((_levelManager.SO_levelManager.sizeX * _levelManager.SO_levelManager.size) +
+                       ((_levelManager.SO_levelManager.sizeX - 1) * _levelManager.SO_levelManager.gapSize)) /2) - (_levelManager.SO_levelManager.size /2);
+        float tempZ = (((_levelManager.SO_levelManager.sizeY * _levelManager.SO_levelManager.size) +
+                       ((_levelManager.SO_levelManager.sizeY - 1) * _levelManager.SO_levelManager.gapSize)) /2) - (_levelManager.SO_levelManager.size /2);
         
         levelCamera.transform.position = new Vector3(tempX, 64.5f, -tempZ);
     }
