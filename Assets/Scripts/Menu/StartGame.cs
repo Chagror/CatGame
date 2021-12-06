@@ -54,31 +54,37 @@ public class StartGame : MonoBehaviour
         {
             case 0 :
                 _nbPlayers = 4;
+                _levelSetup.cameraSizeMultiply = _nbPlayers/4;
                 _levelSetup.sizeX = _nbPlayers * 2;
                 _levelSetup.sizeY = _nbPlayers * 2;
                 break;
             case 1 :
                 _nbPlayers = 8;
+                _levelSetup.cameraSizeMultiply = _nbPlayers/4;
                 _levelSetup.sizeX = _nbPlayers * 2;
                 _levelSetup.sizeY = _nbPlayers * 2;
                 break;
             case 2 :
                 _nbPlayers = 16;
+                _levelSetup.cameraSizeMultiply = _nbPlayers/8;
                 _levelSetup.sizeX = _nbPlayers;
                 _levelSetup.sizeY = _nbPlayers;
                 break;
             case 3 :
                 _nbPlayers = 24;
+                _levelSetup.cameraSizeMultiply = _nbPlayers/8;
                 _levelSetup.sizeX = _nbPlayers;
                 _levelSetup.sizeY = _nbPlayers;
                 break;
             case 4 :
                 _nbPlayers = 32;
+                _levelSetup.cameraSizeMultiply = _nbPlayers/8;
                 _levelSetup.sizeX = _nbPlayers;
                 _levelSetup.sizeY = _nbPlayers;
                 break;
             case 5 :
                 _nbPlayers = 48;
+                _levelSetup.cameraSizeMultiply = _nbPlayers/8;
                 _levelSetup.sizeX = _nbPlayers;
                 _levelSetup.sizeY = _nbPlayers;
                 break;

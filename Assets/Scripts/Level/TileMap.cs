@@ -8,13 +8,15 @@ public class TileMap : MonoBehaviour
     [SerializeField] private Transform parentTile;
     [SerializeField] private LevelSetup _levelSetup;
     [SerializeField] private List<Tile> _map;
-    private Camera levelCamera;
+    private Camera _levelCamera;
     private LevelManager _levelManager;
+    private float _baseCameraSize;
 
     private void Start()
     {
-        levelCamera = Camera.main;
+        _levelCamera = Camera.main;
         _levelManager = LevelManager.instance;
+        _baseCameraSize = 50;
     }
 
     public void  createTileMap() 
@@ -28,12 +30,13 @@ public class TileMap : MonoBehaviour
         }
 
         Draw(_levelSetup.gapSize);
-        float tempX = (((_levelManager.SO_levelManager.sizeX * _levelManager.SO_levelManager.size) +
-                       ((_levelManager.SO_levelManager.sizeX - 1) * _levelManager.SO_levelManager.gapSize)) /2) - (_levelManager.SO_levelManager.size /2);
-        float tempZ = (((_levelManager.SO_levelManager.sizeY * _levelManager.SO_levelManager.size) +
-                       ((_levelManager.SO_levelManager.sizeY - 1) * _levelManager.SO_levelManager.gapSize)) /2) - (_levelManager.SO_levelManager.size /2);
+        float tempX = (((_levelManager._levelSetup.sizeX * _levelManager._levelSetup.size) +
+                       ((_levelManager._levelSetup.sizeX - 1) * _levelManager._levelSetup.gapSize)) /2) - (_levelManager._levelSetup.size /2);
+        float tempZ = (((_levelManager._levelSetup.sizeY * _levelManager._levelSetup.size) +
+                       ((_levelManager._levelSetup.sizeY - 1) * _levelManager._levelSetup.gapSize)) /2) - (_levelManager._levelSetup.size /2);
         
-        levelCamera.transform.position = new Vector3(tempX, 64.5f, -tempZ);
+        _levelCamera.transform.position = new Vector3(tempX, 64.5f, -tempZ);
+        _levelCamera.orthographicSize = _baseCameraSize * _levelSetup.cameraSizeMultiply;
     }
     
     private void Draw(float gapSize)

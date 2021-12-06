@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private TileMap _map;
     [SerializeField] private Game _gameData;
     [SerializeField] private PlayerManager _playerManager;
-    public LevelSetup SO_levelManager;
+    public LevelSetup _levelSetup;
 
     public void InitializeMap()
     {

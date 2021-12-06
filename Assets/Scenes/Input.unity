@@ -198,10 +198,8 @@ MonoBehaviour:
   _actionGoDown: {fileID: 11400000, guid: d1a0639e0469b0b4d81751cbb7c0120e, type: 2}
   _actionGoLeft: {fileID: 11400000, guid: 6c589a3ebe273fb4394920cf3f649013, type: 2}
   _event: {fileID: 11400000, guid: 90034d966aa1cf349a0937343a040e07, type: 2}
-  _game: {fileID: 11400000, guid: ebbb81000c92fcc40a65a0f7bc788eca, type: 2}
-  SO_DataInput: {fileID: 11400000, guid: b6ad771298b2ab84eac6209f89d0fe34, type: 2}
+  _gameData: {fileID: 11400000, guid: ebbb81000c92fcc40a65a0f7bc788eca, type: 2}
   _commandToExecute: {fileID: 11400000, guid: f09fb5bae3e1e2b4a8c2d58e07dd912f, type: 2}
-  _nbrePlayerControlledWithKeyBoard: 2
 --- !u!1 &1891864143
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb198cecb4ad3b43bbacc6634d64f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IM: {fileID: 1891864146}
+  _twitchInputManager: {fileID: 0}
   _commandReaded: {fileID: 11400000, guid: a2570715233e9e74589b89b3a136a7e0, type: 2}
   username: xx_catsgame_xx
   password: oauth:jjg4bn4ppkcr2kjmatx975556la97v

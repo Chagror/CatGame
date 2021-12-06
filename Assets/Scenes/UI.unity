@@ -1583,14 +1583,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f6d996c11954444acf8fe5d5202728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropdownNbPlayer: {fileID: 1687169704}
-  dropdownNbPlayerTotal: {fileID: 1628735768}
-  levelSetup: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
-  startMenu: {fileID: 154253580}
-  propertiesMenu: {fileID: 436052838}
-  gameMenu: {fileID: 1339456403}
-  timerHud: {fileID: 219814832}
-  initialize: {fileID: 11400000, guid: b538d9c0bfc602e4a80383fa49a7c077, type: 2}
+  _dropdownNbPlayer: {fileID: 1687169704}
+  _dropdownNbPlayerTotal: {fileID: 1628735768}
+  _levelSetup: {fileID: 11400000, guid: 183704b1cbc6dd344b3f2309e4aa27f4, type: 2}
+  _startMenu: {fileID: 154253580}
+  _propertiesMenu: {fileID: 436052838}
+  _gameMenu: {fileID: 1339456403}
+  _timerHud: {fileID: 219814832}
+  _initialize: {fileID: 11400000, guid: b538d9c0bfc602e4a80383fa49a7c077, type: 2}
 --- !u!4 &681504383
 Transform:
   m_ObjectHideFlags: 0

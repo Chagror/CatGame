@@ -10,4 +10,5 @@ public class LevelSetup : ScriptableObject
     public float gapSize;
     public GameObject tileObject;
     public float size;
+    public float cameraSizeMultiply = 1;
 }
