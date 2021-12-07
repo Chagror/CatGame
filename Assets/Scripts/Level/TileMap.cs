@@ -54,7 +54,7 @@ public class TileMap : MonoBehaviour
         return _map.Find(item =>item.getX() == posX && item.getY() == posY);
     }
     
-    private void DeleteTile(int posX, int posY)
+    public void DeleteTile(int posX, int posY)
     {
         Tile toDelete = GetTile(posX, posY);
         _map.Remove(toDelete);

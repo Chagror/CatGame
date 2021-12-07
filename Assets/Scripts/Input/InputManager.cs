@@ -5,17 +5,15 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] private CommandToExecute _commandToExecute;
-    
-    public void Update()
-    {
-        Execute();
-        _commandToExecute.CommandPerPlayer = new Dictionary<Player, Action>();
-    }
-    private void Execute()
+    [SerializeField] private GameEvent _deleteEvent;
+
+    public void Execute()
     {
         foreach (KeyValuePair<Player, Action> command in _commandToExecute.CommandPerPlayer)
         {
             command.Value.Execute(command.Key);
         }
+        _commandToExecute.CommandPerPlayer.Clear();
+        _deleteEvent.Raise();
     }
 }

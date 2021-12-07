@@ -10,7 +10,7 @@ public class TwitchInputManager : MonoBehaviour
     private List<Player> _playerList;
     public void Start()
     {
-        _playerList = PlayerManager.instance.players;
+        _playerList = PlayerManager.instance.GetPlayerList();
     }
     public void Notify() 
     {

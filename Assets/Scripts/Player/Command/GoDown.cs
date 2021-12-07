@@ -10,6 +10,6 @@ public class GoDown : Action
             Debug.LogError("player doesn't exist");
         Vector3 tempPos = player.transform.position;
         player.transform.position = new Vector3(tempPos.x, tempPos.y, tempPos.z - player.GetJumpSize());
-        
+        player.SetPosY(player.GetMapIndexY() + 1);
     }
 }

@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     private int _posX;
     private int _posY;
     private float _jumpSize;
-    private Tile _tile;
 
     public void PlayerSetup(string name,int posX , int posY, float jumpSize) 
     {
@@ -27,5 +26,21 @@ public class Player : MonoBehaviour
     public float GetJumpSize()
     {
         return _jumpSize;
+    }
+    public int GetMapIndexX() 
+    {
+        return _posX;
+    }
+    public int GetMapIndexY()
+    {
+        return _posY;
+    }
+    public void SetPosX(int posX) 
+    {
+        _posX = posX;
+    }
+    public void SetPosY(int posY)
+    {
+        _posY = posY;
     }
 }

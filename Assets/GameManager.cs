@@ -18,14 +18,15 @@ public class GameManager : MonoBehaviour
     public Game _gameData;
     public Game.State state;
 
-    [SerializeField] private GameEvent startGame;
-
+    [SerializeField] private GameEvent _executePhase;
+    [SerializeField] private GameEvent _prepareToDelete;
     private float tempTimer;
     private float tempTimerInput;
 
     private void Start()
     {
         tempTimer = _gameData.timerToJoin;
+        tempTimerInput = _gameData.timerForInputs;
     }
 
     private void Update()
@@ -59,28 +60,31 @@ public class GameManager : MonoBehaviour
 
         if (tempTimer <= 0)
         {
+            
             state = Game.State.WaitForInput;
         }
     }
 
     private void WaitForInput()
     {
-        tempTimerInput = _gameData.timerForInputs;
+        
         _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Make your move : " + (int)tempTimerInput;
-        
         tempTimerInput -= Time.deltaTime;
-        
+        Debug.Log("WaitInput");
         if (tempTimerInput <= 0)
         {
+            _prepareToDelete.Raise();
             state = Game.State.Move;
+
+            _executePhase.Raise();
         }
     }
 
     private void Move()
     {
         _gameData.gameHud.SetActive(false);
-        
-        
+        state = Game.State.WaitForInput;
+        tempTimerInput = _gameData.timerForInputs;
     }
 
     private void EndGame()

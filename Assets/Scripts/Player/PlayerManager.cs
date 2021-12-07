@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Transform _parent;
     [SerializeField] private GameObject _playerPrefabs;
     [SerializeField] private float _playerHeightSpawn;
-    [SerializeField] public List<Player> players = new List<Player>();
+    [SerializeField] private List<Player> _players = new List<Player>();
     private GameManager _gameManager;
     private List<int[]> _indexes = new List<int[]>();
 
@@ -31,6 +31,11 @@ public class PlayerManager : MonoBehaviour
         _gameManager = GameManager.instance;
     }
 
+
+    public List<Player> GetPlayerList()
+    {
+        return _players;
+    }
     public void RandomizeSpawn(int nbPlayer, TileMap map)
     {
         _indexes = new List<int[]>();
@@ -53,17 +58,17 @@ public class PlayerManager : MonoBehaviour
 
     public void InstantiatePlayer(string playerName)
     {
-        if ( players.Count >= _gameManager._gameData.nbPlayers || players.Find(p=>p.GetName().Equals(playerName)) )
+        if ( _players.Count >= _gameManager._gameData.nbPlayers || _players.Find(p=>p.GetName().Equals(playerName)) )
             return;
 
         Vector3 pos = new Vector3();
-        pos.x  = _indexes[players.Count][0] *_levelSetup.size + _indexes[players.Count][0] * _levelSetup.gapSize ;
-        pos.z = -(_indexes[players.Count][1] * _levelSetup.size) - (_indexes[players.Count][1] * _levelSetup.gapSize) ;
+        pos.x  = _indexes[_players.Count][0] *_levelSetup.size + _indexes[_players.Count][0] * _levelSetup.gapSize ;
+        pos.z = -(_indexes[_players.Count][1] * _levelSetup.size) - (_indexes[_players.Count][1] * _levelSetup.gapSize) ;
         pos.y = _playerHeightSpawn;
         Player newPlayer = (Player)Instantiate(_playerPrefabs, pos, Quaternion.identity,_parent).GetComponent(typeof(Player));
         
-        newPlayer.PlayerSetup(playerName, _indexes[players.Count][0], _indexes[players.Count][1], _levelSetup.size+ _levelSetup.gapSize);
+        newPlayer.PlayerSetup(playerName, _indexes[_players.Count][0], _indexes[_players.Count][1], _levelSetup.size+ _levelSetup.gapSize);
         
-        players.Add(newPlayer);
+        _players.Add(newPlayer);
     }
 }

@@ -40,7 +40,7 @@ public class KeyBoardInputManager : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.instance;
-        _playerList = PlayerManager.instance.players;
+        _playerList = PlayerManager.instance.GetPlayerList();
         
     }
 
