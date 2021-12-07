@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,19 +11,23 @@ public class Player : MonoBehaviour
     private int _posY;
     private float _jumpSize;
 
+    [SerializeField] private GameEvent _deathEvent;
+    private PlayerManager _playerManager;
+
     public void PlayerSetup(string name,int posX , int posY, float jumpSize) 
     {
         _name = name;
         _posX = posX;
         _posY = posY;
         _jumpSize = jumpSize;
+        
+        _playerManager = PlayerManager.instance;
     }
 
     public string GetName()
     {
         return _name;
     }
-
     public float GetJumpSize()
     {
         return _jumpSize;
@@ -42,5 +47,16 @@ public class Player : MonoBehaviour
     public void SetPosY(int posY)
     {
         _posY = posY;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Deathzone")
+        {
+            _deathEvent.Raise();
+            _playerManager.RemovePlayer(this);
+            Debug.Log(_name + " is dead");
+            Destroy(gameObject);
+        }
     }
 }

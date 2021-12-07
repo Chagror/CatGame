@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nbPlayers: 4
   nbrePlayerControlledWithKeyBoard: 0
-  volume: 0
+  volume: 35
   startMenu: {fileID: 0}
   propertiesMenu: {fileID: 0}
   gameHud: {fileID: 0}

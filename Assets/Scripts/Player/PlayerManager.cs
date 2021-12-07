@@ -71,4 +71,9 @@ public class PlayerManager : MonoBehaviour
         
         _players.Add(newPlayer);
     }
+
+    public void RemovePlayer(Player player)
+    {
+        _players.Remove(player);
+    }
 }
