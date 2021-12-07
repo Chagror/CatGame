@@ -18,7 +18,6 @@ public class TwitchChat : MonoBehaviour
     private GameManager _gameManager;
     private PlayerManager _playerManager;
     [SerializeField] private CommandReadedFromTwitch _commandReaded;
-    private Dictionary<string, string> _commandDictionary;
 
     public string username, password, channelName; //https://twitchapps.com/tmi
 
@@ -28,7 +27,6 @@ public class TwitchChat : MonoBehaviour
         Connect();
         _gameManager = GameManager.instance;
         _playerManager = PlayerManager.instance;
-        _commandDictionary = new Dictionary<string, string>();
     }
 
     // Update is called once per frame
@@ -67,7 +65,6 @@ public class TwitchChat : MonoBehaviour
             
             if (message.Contains("PRIVMSG"))
             {
-                
                 Debug.Log(message);
                 
                 //Get username
@@ -82,30 +79,22 @@ public class TwitchChat : MonoBehaviour
 
                 if (message[0] == '!')
                 {
-                    /*if (CommandDictionary.ContainsKey(chatName))
-                    {
-                        message = message.Substring(1);
-                        CommandDictionary[chatName] = message;
-                    }*/
-                    
-                    if ((message.Contains("join") || message.Contains("j")) && _gameManager.state == Game.State.Lobby)
+                    if(_gameManager.state == Game.State.Lobby && message.Contains("join"))
                     {
                         //Call method to create prefab
                         _playerManager.InstantiatePlayer(chatName);
+                    }
+                    else if (_gameManager.state == Game.State.WaitForInput)
+                    {
+                        _commandReaded.CommandPerPlayer.Add(chatName, message);
                     }
                 }
             }
         }
     }
 
-    public Dictionary<string, string> GetDictionary()
-    {
-        return _commandDictionary;
-    }
-
     public void PassDictionary()
     {
-        _commandReaded.CommandPerPlayer = _commandDictionary;
         _twitchInputManager.Notify();
     }
 }
