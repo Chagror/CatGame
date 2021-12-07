@@ -46,12 +46,13 @@ public class TileMap : MonoBehaviour
             tile.Draw(gapSize, parentTile);
         }
     }
+    
     public LevelSetup GetLevelSetup() { return _levelSetup; }
+    
     private Tile GetTile(int posX, int posY)
     {
         return _map.Find(item =>item.getX() == posX && item.getY() == posY);
     }
-
     
     private void DeleteTile(int posX, int posY)
     {

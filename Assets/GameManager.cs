@@ -66,26 +66,31 @@ public class GameManager : MonoBehaviour
     private void WaitForInput()
     {
         tempTimerInput = _gameData.timerForInputs;
-
         _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Make your move : " + (int)tempTimerInput;
         
         tempTimerInput -= Time.deltaTime;
+        
+        if (_gameData.timerToJoin <= 0)
+        {
+            state = Game.State.Move;
+        }
     }
 
     private void Move()
     {
-
+        _gameData.gameHud.SetActive(false);
+        
+        
     }
 
     private void EndGame()
     {
         _gameData.startMenu.SetActive(true);
-        _gameData.gameHud.SetActive(false);
     }
 
     private void StartGame()
     {
-        //Can't pass startGameMenuor gameHud here
+        //Can't pass startGameMenu or gameHud here
         //They are not initialized for the first frame, so red alert for Unity.
 
         //I know it's all fucked up, so i juste disabled and enabled what I wanted in the UI scene

@@ -91,6 +91,7 @@ public class StartGame : MonoBehaviour
             default: break;
         }
 
+        _gameManager._gameData.nbrePlayerControlledWithKeyBoard = _nbPlayersKeyboard;
         _gameManager._gameData.nbPlayers = _nbPlayers;
         _gameManager._gameData.volume = PlayerPrefs.GetInt("Volume");
         _initialize.Raise();

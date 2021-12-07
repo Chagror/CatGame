@@ -35,8 +35,8 @@ public class PlayerManager : MonoBehaviour
     {
         _indexes = new List<int[]>();
         _levelSetup = map.GetLevelSetup();
-        int mapSizeX = _levelSetup.sizeX;
-        int mapSizeY = _levelSetup.sizeY;
+        var mapSizeX = _levelSetup.sizeX;
+        var mapSizeY = _levelSetup.sizeY;
 
         for (int i = 0; i < nbPlayer; i++) 
         {
