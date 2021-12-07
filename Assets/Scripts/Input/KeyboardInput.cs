@@ -22,16 +22,16 @@ public class KeyboardInput : MonoBehaviour
         _input = new Input();
 
         _input.Gameplay.Up.performed += ctx =>
-            _inputManager.GoUp(0);
+            _inputManager.GoUp("Player 1");
 
         _input.Gameplay.Down.performed += ctx =>
-           _inputManager.GoDown(0);
+           _inputManager.GoDown("Player 1");
 
         _input.Gameplay.Left.performed += ctx =>
-           _inputManager.GoLeft(0);
+           _inputManager.GoLeft("Player 1");
 
         _input.Gameplay.Right.performed += ctx =>
-           _inputManager.GoRight(0);
+           _inputManager.GoRight("Player 1");
         
         _input.Gameplay.Test.performed += ctx =>
             _inputManager.Test();

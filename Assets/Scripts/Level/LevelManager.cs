@@ -35,7 +35,8 @@ public class LevelManager : MonoBehaviour
 
         for (var i = 1; i <= _gameData.nbrePlayerControlledWithKeyBoard; i++)
         {
-            var playerName = (i + 1).ToString();
+            var playerName = "Player " + (i);
+            Debug.Log(playerName);
             _playerManager.InstantiatePlayer(playerName);
         }
     }

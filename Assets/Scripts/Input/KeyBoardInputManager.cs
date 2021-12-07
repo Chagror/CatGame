@@ -44,25 +44,45 @@ public class KeyBoardInputManager : MonoBehaviour
         
     }
 
-    public void GoUp(int playerNumber)
+    public void GoUp(string playerName)
     {
-        if(playerNumber < _playerList.Count) 
-            _commandToExecute.CommandPerPlayer.Add(_playerList[playerNumber], _actionGoUp);
+        Player player = _playerList.Find(p => p.GetName().Equals(playerName));
+        if (player == null)
+        {
+            Debug.LogError("Player not found");
+            return;
+        }
+        _commandToExecute.CommandPerPlayer.Add(player, _actionGoUp);
     }
-    public void GoLeft(int playerNumber)
+    public void GoLeft(string playerName)
     {
-        if (playerNumber < _playerList.Count)
-            _commandToExecute.CommandPerPlayer.Add(_playerList[playerNumber], _actionGoLeft);
+        Player player = _playerList.Find(p => p.GetName().Equals(playerName));
+        if (player == null)
+        {
+            Debug.LogError("Player not found");
+            return;
+        }
+        _commandToExecute.CommandPerPlayer.Add(player, _actionGoLeft);
     }
-    public void GoRight(int playerNumber)
+    public void GoRight(string playerName)
     {
-        if (playerNumber < _playerList.Count)
-            _commandToExecute.CommandPerPlayer.Add(_playerList[playerNumber], _actionGoRight);
+        Player player = _playerList.Find(p => p.GetName().Equals(playerName));
+        if (player == null)
+        {
+            Debug.LogError("Player not found");
+            return;
+        }
+        _commandToExecute.CommandPerPlayer.Add(player, _actionGoRight);
     }
-    public void GoDown(int playerNumber)
+    public void GoDown(string playerName)
     {
-        if (playerNumber < _playerList.Count)
-            _commandToExecute.CommandPerPlayer.Add(_playerList[playerNumber], _actionGoDown);
+        Player player = _playerList.Find(p => p.GetName().Equals(playerName));
+        if (player == null)
+        {
+            Debug.LogError("Player not found");
+            return;
+        }
+        _commandToExecute.CommandPerPlayer.Add(player, _actionGoDown);
     }
     
     public void Test()
