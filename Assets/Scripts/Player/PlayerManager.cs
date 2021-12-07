@@ -53,7 +53,7 @@ public class PlayerManager : MonoBehaviour
 
     public void InstantiatePlayer(string playerName)
     {
-        if (players.Count >= _gameManager._gameData.nbPlayers)
+        if ( players.Count >= _gameManager._gameData.nbPlayers || players.Find(p=>p.GetName().Equals(playerName)) )
             return;
 
         Vector3 pos = new Vector3();

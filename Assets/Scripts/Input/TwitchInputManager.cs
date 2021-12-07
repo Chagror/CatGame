@@ -29,7 +29,14 @@ public class TwitchInputManager : MonoBehaviour
             }
             Action action = _commands.Find(command.Value);
             if (action != null)
-                _commandToExecute.CommandPerPlayer.Add(player, action);
+            {
+                if (!_commandToExecute.CommandPerPlayer.ContainsKey(player))
+                    _commandToExecute.CommandPerPlayer.Add(player, action);
+                else
+                {
+                    _commandToExecute.CommandPerPlayer[player] = action;
+                }
+            }
         }
     }
 }

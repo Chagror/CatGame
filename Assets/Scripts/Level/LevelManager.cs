@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
 
         _playerManager.RandomizeSpawn(_gameData.nbPlayers, _map);
         
-        for (var i = 0; i >= _gameData.nbrePlayerControlledWithKeyBoard; i++)
+        for (var i = 1; i <= _gameData.nbrePlayerControlledWithKeyBoard; i++)
         {
             var playerName = (i+1).ToString();
             _playerManager.InstantiatePlayer(playerName);

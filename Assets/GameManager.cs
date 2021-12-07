@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         tempTimer -= Time.deltaTime;
         _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Timer to join : " + (int)tempTimer;
 
-        if (_gameData.timerToJoin <= 0)
+        if (tempTimer <= 0)
         {
             state = Game.State.WaitForInput;
         }
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         
         tempTimerInput -= Time.deltaTime;
         
-        if (_gameData.timerToJoin <= 0)
+        if (tempTimerInput <= 0)
         {
             state = Game.State.Move;
         }
