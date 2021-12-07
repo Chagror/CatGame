@@ -65,8 +65,6 @@ public class TwitchChat : MonoBehaviour
             
             if (message.Contains("PRIVMSG"))
             {
-                Debug.Log(message);
-                
                 //Get username
                 var splitpoint = message.IndexOf("!", 1);
                 var chatName = message.Substring(0, splitpoint);
@@ -87,13 +85,14 @@ public class TwitchChat : MonoBehaviour
                     else if (_gameManager.state == Game.State.WaitForInput)
                     {
                         _commandReaded.CommandPerPlayer.Add(chatName, message);
+                        PassDictionary();
                     }
                 }
             }
         }
     }
 
-    public void PassDictionary()
+    private void PassDictionary()
     {
         _twitchInputManager.Notify();
     }

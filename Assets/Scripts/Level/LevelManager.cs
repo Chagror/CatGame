@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour
         {
             int posX = player.GetMapIndexX();
             int posY = player.GetMapIndexY();
-            if ((posX >= 0 && posX < _levelSetup.sizeX) && (posY >= 0 && posY < _levelSetup.sizeY))
+            if ((posX >= 0 && posX <= _levelSetup.sizeX) && (posY >= 0 && posY <= _levelSetup.sizeY))
             {
                 int[] index = new int[2] { posY, posX };
                 _tileindexToDelete.Add(index);

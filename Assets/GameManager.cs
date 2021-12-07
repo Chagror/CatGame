@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         
         _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Make your move : " + (int)tempTimerInput;
         tempTimerInput -= Time.deltaTime;
-        Debug.Log("WaitInput");
+        
         if (tempTimerInput <= 0)
         {
             _prepareToDelete.Raise();

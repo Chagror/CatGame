@@ -9,10 +9,9 @@ public abstract class Action : ScriptableObject
 
     public bool Contains(string command)
     {
-        string tmpCommand = command.ToUpper().Replace(" ", string.Empty);
         foreach (string commandName in commandNames)
         {
-            if ( String.Equals(commandName.ToUpper().Replace(" ", string.Empty),tmpCommand) )
+            if (commandName.Contains(command))
             {
                 return true;
             }

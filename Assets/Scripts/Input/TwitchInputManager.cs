@@ -14,8 +14,10 @@ public class TwitchInputManager : MonoBehaviour
     }
     public void Notify() 
     {
+        //Is ok
         CreateCommands();
     }
+    
     public void CreateCommands() 
     {
         foreach (KeyValuePair<string, string> command in _commandReaded.CommandPerPlayer)
@@ -28,15 +30,20 @@ public class TwitchInputManager : MonoBehaviour
                 return;
             }
             Action action = _commands.Find(command.Value);
-            if (action != null)
+            if (action == null)
             {
-                if (!_commandToExecute.CommandPerPlayer.ContainsKey(player))
-                    _commandToExecute.CommandPerPlayer.Add(player, action);
-                else
-                {
-                    _commandToExecute.CommandPerPlayer[player] = action;
-                }
+                Debug.LogError("action not found");
+                return;
+            }
+
+            if (!_commandToExecute.CommandPerPlayer.ContainsKey(player))
+                _commandToExecute.CommandPerPlayer.Add(player, action);
+            else
+            {
+                _commandToExecute.CommandPerPlayer[player] = action;
             }
         }
+        
+        _commandReaded.CommandPerPlayer.Clear();
     }
 }
