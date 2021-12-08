@@ -52,7 +52,12 @@ public class KeyBoardInputManager : MonoBehaviour
             Debug.LogError("Player not found");
             return;
         }
-        _commandToExecute.CommandPerPlayer.Add(player, _actionGoUp);
+        if (!_commandToExecute.CommandPerPlayer.ContainsKey(player))
+            _commandToExecute.CommandPerPlayer.Add(player, _actionGoUp);
+        else
+        {
+            _commandToExecute.CommandPerPlayer[player] = _actionGoUp;
+        }
     }
     public void GoLeft(string playerName)
     {
@@ -62,7 +67,12 @@ public class KeyBoardInputManager : MonoBehaviour
             Debug.LogError("Player not found");
             return;
         }
-        _commandToExecute.CommandPerPlayer.Add(player, _actionGoLeft);
+        if (!_commandToExecute.CommandPerPlayer.ContainsKey(player))
+            _commandToExecute.CommandPerPlayer.Add(player, _actionGoLeft);
+        else
+        {
+            _commandToExecute.CommandPerPlayer[player] = _actionGoLeft;
+        }
     }
     public void GoRight(string playerName)
     {
@@ -72,7 +82,13 @@ public class KeyBoardInputManager : MonoBehaviour
             Debug.LogError("Player not found");
             return;
         }
-        _commandToExecute.CommandPerPlayer.Add(player, _actionGoRight);
+
+        if (!_commandToExecute.CommandPerPlayer.ContainsKey(player))
+            _commandToExecute.CommandPerPlayer.Add(player, _actionGoRight);
+        else
+        {
+            _commandToExecute.CommandPerPlayer[player] = _actionGoRight;
+        }
     }
     public void GoDown(string playerName)
     {
@@ -82,7 +98,12 @@ public class KeyBoardInputManager : MonoBehaviour
             Debug.LogError("Player not found");
             return;
         }
-        _commandToExecute.CommandPerPlayer.Add(player, _actionGoDown);
+        if (!_commandToExecute.CommandPerPlayer.ContainsKey(player))
+            _commandToExecute.CommandPerPlayer.Add(player, _actionGoDown);
+        else
+        {
+            _commandToExecute.CommandPerPlayer[player] = _actionGoDown;
+        }
     }
     
     public void Test()

@@ -12,17 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6f983236874cd43b6f069b0c894e72, type: 3}
   m_Name: SO_Game
   m_EditorClassIdentifier: 
-  nbPlayers: 4
-<<<<<<< Updated upstream
+  nbPlayers: 0
   nbrePlayerControlledWithKeyBoard: 0
-  volume: 35
-=======
-  nbrePlayerControlledWithKeyBoard: 1
   volume: 0
->>>>>>> Stashed changes
   startMenu: {fileID: 0}
   propertiesMenu: {fileID: 0}
   gameHud: {fileID: 0}
-  timerToJoin: 30
+  timerToJoin: 0
   timerObject: {fileID: 0}
-  timerForInputs: 15
+  timerForInputs: 0

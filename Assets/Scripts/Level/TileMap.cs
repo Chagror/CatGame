@@ -59,9 +59,8 @@ public class TileMap : MonoBehaviour
         //Debug.Log(_map.Count);
         Tile toDelete = GetTile(posX, posY);
         
-        if(toDelete == null)
+        if(toDelete is null)
             Debug.LogError(posX + " " + posY);
-        
         _map.Remove(toDelete);
         toDelete.delete();
         
