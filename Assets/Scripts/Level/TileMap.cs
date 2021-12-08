@@ -58,10 +58,20 @@ public class TileMap : MonoBehaviour
     {
         //Debug.Log(_map.Count);
         Tile toDelete = GetTile(posX, posY);
-        
-        if(toDelete is null)
+
+        if (toDelete is null)
+        {
             Debug.LogError(posX + " " + posY);
-        _map.Remove(toDelete);
+        }
+        int i;
+        for (i = 0; i < _map.Count; i++)
+        {
+            if (_map[i].getX() == posX && _map[i].getY() == posY)
+            {
+                _map.RemoveAt(i);
+                break;
+            }
+        }
         toDelete.delete();
         
     }
