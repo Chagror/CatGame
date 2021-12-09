@@ -84,7 +84,12 @@ public class TwitchChat : MonoBehaviour
                     }
                     else if (_gameManager.state == Game.State.WaitForInput)
                     {
-                        _commandReaded.CommandPerPlayer.Add(chatName, message);
+                        if (!_commandReaded.CommandPerPlayer.ContainsKey(chatName))
+                            _commandReaded.CommandPerPlayer.Add(chatName, message);
+                        else
+                        {
+                            _commandReaded.CommandPerPlayer[chatName] = message;
+                        }
                         PassDictionary();
                     }
                 }

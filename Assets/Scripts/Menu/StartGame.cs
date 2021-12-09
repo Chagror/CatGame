@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -20,11 +21,13 @@ public class StartGame : MonoBehaviour
     [SerializeField] private GameObject _propertiesMenu;
     [SerializeField] private GameObject _gameMenu;
     [SerializeField] private GameObject _timerHud;
-    [SerializeField] private GameEvent _initialize; 
+    [SerializeField] private GameEvent _initialize;
+    [SerializeField] private GameObject _fadeImage;
+    [FormerlySerializedAs("_fadeSpeed")] [SerializeField] private float _fadeTimer;
 
     //Ref to the script named "GameManager"
     private GameManager _gameManager;
-
+    
     private void Start()
     {
         _gameManager = GameManager.instance;
@@ -94,12 +97,44 @@ public class StartGame : MonoBehaviour
         _gameManager._gameData.nbrePlayerControlledWithKeyBoard = _nbPlayersKeyboard;
         _gameManager._gameData.nbPlayers = _nbPlayers;
         _gameManager._gameData.volume = PlayerPrefs.GetInt("Volume");
+        StartCoroutine(BlackFade());
         _initialize.Raise();
-        _gameManager.state = global::Game.State.Lobby;
     }
 
     public void Quit()
     {
         Application.Quit();
+    }
+
+    IEnumerator BlackFade()
+    {
+        float timer = 0;
+        //Awful
+        _fadeImage.transform.parent.gameObject.SetActive(true);
+        var image = _fadeImage.GetComponent<Image>();
+
+        while (timer < _fadeTimer)
+        {
+            image.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), timer / _fadeTimer);
+            
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        
+        yield return new WaitForSeconds(1);
+        _gameManager.state = global::Game.State.Lobby;
+        timer = 0;
+
+        while (timer < _fadeTimer)
+        {
+            image.color = Color.Lerp(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), timer / _fadeTimer);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        _fadeImage.transform.parent.gameObject.SetActive(false);
+        
+        yield return null;
     }
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoRight
   m_EditorClassIdentifier: 
   commandNames:
-  - r
+  - '!right'

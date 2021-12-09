@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoUp
   m_EditorClassIdentifier: 
   commandNames:
-  - u
+  - '!up'
