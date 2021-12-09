@@ -26,7 +26,6 @@ public class TwitchInputManager : MonoBehaviour
             Player player = _playerList.Find(p => p.GetName().Equals(command.Key));
             if (player == null)
             {
-                Debug.LogError("Player not found");
                 return;
             }
             Action action = _commands.Find(command.Value);

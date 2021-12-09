@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     private void WaitForInput()
     {
+        _gameData.gameHud.SetActive(true);
         
         _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Make your move : " + (int)tempTimerInput;
         tempTimerInput -= Time.deltaTime;
