@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
 
     public void InitializeMap()
     {
-        _map.createTileMap();
+        _map.CreateTileMap();
         //_playerManager.RandomizeSpawn(_gameData.nbrePlayerControlledWithKeyBoard, _map);
 
         _playerManager.RandomizeSpawn(_gameData.nbPlayers, _map);
@@ -38,6 +38,13 @@ public class LevelManager : MonoBehaviour
             var playerName = "Player " + (i);
             _playerManager.InstantiatePlayer(playerName);
         }
+    }
+    public void LoadMap(List<string> playersID, List<int[]> playersIndex, List<int[]> tileIndex) 
+    {
+        _playerManager.SetupSpawnIndex(playersIndex);
+        foreach (var name in playersID)
+            _playerManager.InstantiatePlayer(name);
+
     }
     public void PrepareTileToDeleteNextRound()
     {
@@ -52,6 +59,10 @@ public class LevelManager : MonoBehaviour
                 _tileindexToDelete.Add(index);
             }
         }
+    }
+    public TileMap GetTileMap() 
+    {
+        return _map;
     }
     public void DeleteTile()
     {

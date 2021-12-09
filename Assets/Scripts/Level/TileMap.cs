@@ -19,7 +19,7 @@ public class TileMap : MonoBehaviour
         _baseCameraSize = 50;
     }
 
-    public void  createTileMap() 
+    public void  CreateTileMap() 
     {
         for (int i = 0; i < _levelSetup.sizeY; i++)
         {
@@ -35,6 +35,21 @@ public class TileMap : MonoBehaviour
         float tempZ = (((_levelManager._levelSetup.sizeY * _levelManager._levelSetup.size) +
                        ((_levelManager._levelSetup.sizeY - 1) * _levelManager._levelSetup.gapSize)) /2) - (_levelManager._levelSetup.size /2);
         
+        _levelCamera.transform.position = new Vector3(tempX, 64.5f, -tempZ);
+        _levelCamera.orthographicSize = _baseCameraSize * _levelSetup.cameraSizeMultiply;
+    }
+    public void LoadMap(List<int[]> tileIndex) 
+    {
+        foreach (var index in tileIndex)
+        {
+            _map.Add(new Tile(index[1], index[0], _levelSetup.size, _levelSetup.tileObject)); ;   
+        }
+        Draw(_levelSetup.gapSize);
+        float tempX = (((_levelManager._levelSetup.sizeX * _levelManager._levelSetup.size) +
+                       ((_levelManager._levelSetup.sizeX - 1) * _levelManager._levelSetup.gapSize)) / 2) - (_levelManager._levelSetup.size / 2);
+        float tempZ = (((_levelManager._levelSetup.sizeY * _levelManager._levelSetup.size) +
+                       ((_levelManager._levelSetup.sizeY - 1) * _levelManager._levelSetup.gapSize)) / 2) - (_levelManager._levelSetup.size / 2);
+
         _levelCamera.transform.position = new Vector3(tempX, 64.5f, -tempZ);
         _levelCamera.orthographicSize = _baseCameraSize * _levelSetup.cameraSizeMultiply;
     }
@@ -74,5 +89,9 @@ public class TileMap : MonoBehaviour
         }
         toDelete.delete();
         
+    }
+    public List<Tile> GetTiles()
+    {
+        return _map;
     }
 }

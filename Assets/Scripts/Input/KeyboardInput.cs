@@ -34,7 +34,7 @@ public class KeyboardInput : MonoBehaviour
            _inputManager.GoRight("Player 1");
         
         _input.Gameplay.Test.performed += ctx =>
-            _inputManager.Test();
+            _inputManager.Save();
 
         _input.Menu.PauseMenu.performed += ctx =>
              _inputManager.Pause();

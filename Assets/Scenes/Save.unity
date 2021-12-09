@@ -75,18 +75,18 @@ LightmapSettings:
     m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 500
+    m_PVRSampleCount: 512
     m_PVRBounces: 2
-    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentSampleCount: 256
     m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilteringMode: 2
-    m_PVRDenoiserTypeDirect: 0
-    m_PVRDenoiserTypeIndirect: 0
-    m_PVRDenoiserTypeAO: 0
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 0
+    m_PVREnvironmentMIS: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1364208368
+--- !u!1 &1274755196
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,96 +131,35 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1364208370}
-  - component: {fileID: 1364208371}
-  - component: {fileID: 1364208372}
-  - component: {fileID: 1364208369}
-  - component: {fileID: 1364208373}
+  - component: {fileID: 1274755199}
+  - component: {fileID: 1274755198}
+  - component: {fileID: 1274755197}
   m_Layer: 0
-  m_Name: InputManager
+  m_Name: SaveSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1364208369
+--- !u!114 &1274755197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364208368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 237f6ba22089503409efce5f8a80ebd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _commandToExecute: {fileID: 11400000, guid: f09fb5bae3e1e2b4a8c2d58e07dd912f, type: 2}
-  _deleteEvent: {fileID: 11400000, guid: 7627cc535e1bdd54eba6efd5725c01a8, type: 2}
---- !u!4 &1364208370
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364208368}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1364208371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364208368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896541c0f5d6dc54197fb924f3c79ec5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1364208372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364208368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c209482fcbf794c8e85ffeef5a128d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _actionGoUp: {fileID: 11400000, guid: 2057def363cb94f458ce592bd21aa033, type: 2}
-  _actionGoRight: {fileID: 11400000, guid: cc897124632810c48bbd7ac95b7f4dfc, type: 2}
-  _actionGoDown: {fileID: 11400000, guid: d1a0639e0469b0b4d81751cbb7c0120e, type: 2}
-  _actionGoLeft: {fileID: 11400000, guid: 6c589a3ebe273fb4394920cf3f649013, type: 2}
-  _eventSave: {fileID: 11400000, guid: a23e1513b45938342b083b94fad7a0f6, type: 2}
-  _gameData: {fileID: 11400000, guid: 2dfe97630f83c71489ef2cd079ea4983, type: 2}
-  _commandToExecute: {fileID: 11400000, guid: f09fb5bae3e1e2b4a8c2d58e07dd912f, type: 2}
---- !u!114 &1364208373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364208368}
+  m_GameObject: {fileID: 1274755196}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 426c60598433ff94481a2bcd28a3ff9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: f7123787602205f44bb6da623d6227ec, type: 2}
+  _event: {fileID: 11400000, guid: a23e1513b45938342b083b94fad7a0f6, type: 2}
   _onEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1364208369}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: Execute
+      - m_Target: {fileID: 1274755198}
+        m_TargetAssemblyTypeName: SaverSystem, Assembly-CSharp
+        m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -230,67 +169,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1891864143
-GameObject:
+--- !u!114 &1274755198
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1891864144}
-  - component: {fileID: 1891864145}
-  - component: {fileID: 1891864146}
-  m_Layer: 0
-  m_Name: TwitchChat
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1891864144
+  m_GameObject: {fileID: 1274755196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab73e3ed7d58d734f8f4822d05af1303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1274755199
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1891864143}
+  m_GameObject: {fileID: 1274755196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100.95744, y: -23.274372, z: -68.60731}
+  m_LocalPosition: {x: 38.471394, y: 11.521238, z: -13.079709}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1891864145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1891864143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eb198cecb4ad3b43bbacc6634d64f9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _twitchInputManager: {fileID: 1891864146}
-  _commandReaded: {fileID: 11400000, guid: a2570715233e9e74589b89b3a136a7e0, type: 2}
-  username: xx_catsgame_xx
-  password: oauth:jjg4bn4ppkcr2kjmatx975556la97v
-  channelName: xx_catsgame_xx
---- !u!114 &1891864146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1891864143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf5f90dea358274cb8488a042066c71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _commandToExecute: {fileID: 11400000, guid: f09fb5bae3e1e2b4a8c2d58e07dd912f, type: 2}
-  _commands: {fileID: 11400000, guid: 94038c114e401fc40b066b7dacf7cdb5, type: 2}
-  _commandReaded: {fileID: 11400000, guid: a2570715233e9e74589b89b3a136a7e0, type: 2}

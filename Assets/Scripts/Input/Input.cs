@@ -57,6 +57,14 @@ public class @Input : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Save"",
+                    ""type"": ""Button"",
+                    ""id"": ""529e7962-01f1-4ada-95a8-6afa3aab6e3d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -114,6 +122,17 @@ public class @Input : IInputActionCollection, IDisposable
                     ""action"": ""Test"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4157ab04-870d-4dfd-9308-63276403b4e7"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -154,6 +173,7 @@ public class @Input : IInputActionCollection, IDisposable
         m_Gameplay_Left = m_Gameplay.FindAction("Left", throwIfNotFound: true);
         m_Gameplay_Right = m_Gameplay.FindAction("Right", throwIfNotFound: true);
         m_Gameplay_Test = m_Gameplay.FindAction("Test", throwIfNotFound: true);
+        m_Gameplay_Save = m_Gameplay.FindAction("Save", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_PauseMenu = m_Menu.FindAction("PauseMenu", throwIfNotFound: true);
@@ -211,6 +231,7 @@ public class @Input : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Left;
     private readonly InputAction m_Gameplay_Right;
     private readonly InputAction m_Gameplay_Test;
+    private readonly InputAction m_Gameplay_Save;
     public struct GameplayActions
     {
         private @Input m_Wrapper;
@@ -220,6 +241,7 @@ public class @Input : IInputActionCollection, IDisposable
         public InputAction @Left => m_Wrapper.m_Gameplay_Left;
         public InputAction @Right => m_Wrapper.m_Gameplay_Right;
         public InputAction @Test => m_Wrapper.m_Gameplay_Test;
+        public InputAction @Save => m_Wrapper.m_Gameplay_Save;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -244,6 +266,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @Test.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTest;
                 @Test.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTest;
                 @Test.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTest;
+                @Save.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSave;
+                @Save.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSave;
+                @Save.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSave;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -263,6 +288,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @Test.started += instance.OnTest;
                 @Test.performed += instance.OnTest;
                 @Test.canceled += instance.OnTest;
+                @Save.started += instance.OnSave;
+                @Save.performed += instance.OnSave;
+                @Save.canceled += instance.OnSave;
             }
         }
     }
@@ -307,6 +335,7 @@ public class @Input : IInputActionCollection, IDisposable
         void OnLeft(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
         void OnTest(InputAction.CallbackContext context);
+        void OnSave(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

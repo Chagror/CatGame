@@ -30,7 +30,7 @@ public class KeyBoardInputManager : MonoBehaviour
 
     private GameManager _gameManager;
     [SerializeField]
-    private GameEvent _event;
+    private GameEvent _eventSave;
     [SerializeField]
     private Game _gameData;
 
@@ -106,9 +106,9 @@ public class KeyBoardInputManager : MonoBehaviour
         }
     }
     
-    public void Test()
+    public void Save()
     {
-        _event.Raise();
+        _eventSave.Raise();
     }
     public void Pause()
     {

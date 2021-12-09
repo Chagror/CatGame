@@ -55,6 +55,10 @@ public class PlayerManager : MonoBehaviour
             _indexes.Add(index);
         }
     }
+    public void SetupSpawnIndex(List<int[]> indexes)
+    {
+        _indexes = indexes;
+    }
 
     public void InstantiatePlayer(string playerName)
     {
