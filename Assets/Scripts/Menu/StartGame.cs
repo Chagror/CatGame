@@ -102,7 +102,7 @@ public class StartGame : MonoBehaviour
         _gameManager._gameData.nbrePlayerControlledWithKeyBoard = _nbPlayersKeyboard;
         _gameManager._gameData.nbPlayers = _nbPlayers;
         _gameManager._gameData.volume = PlayerPrefs.GetInt("Volume");
-        StartCoroutine(BlackFade());
+        StartCoroutine(BlackFade(global::Game.State.Lobby));
         _initialize.Raise();
         _startEvent.Raise();
     }
@@ -112,7 +112,7 @@ public class StartGame : MonoBehaviour
     }
     public void Loaded() 
     {
-        StartCoroutine(BlackFade());
+        StartCoroutine(BlackFade(global::Game.State.WaitForInput));
         _startEvent.Raise();
     }
 
@@ -121,7 +121,7 @@ public class StartGame : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator BlackFade()
+    IEnumerator BlackFade(Game.State state)
     {
         float timer = 0;
         //Awful
@@ -138,7 +138,7 @@ public class StartGame : MonoBehaviour
 
         
         yield return new WaitForSeconds(1);
-        _gameManager.state = global::Game.State.Lobby;
+        _gameManager.state = state;
         timer = 0;
 
         while (timer < _fadeTimer)

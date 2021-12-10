@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
             instance = this;
     }
     #endregion
-    
+
     public Game _gameData;
     public Game.State state;
 
@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour
             default: break;
         }
     }
+    public void SetWaitForInput()
+    {
+        state = Game.State.WaitForInput;
+    }
 
     #region States methods
     private void Lobby()
@@ -68,7 +72,8 @@ public class GameManager : MonoBehaviour
     private void WaitForInput()
     {
         _gameData.gameHud.SetActive(true);
-        
+        _gameData.startMenu.SetActive(false);
+
         _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Make your move : " + (int)tempTimerInput;
         tempTimerInput -= Time.deltaTime;
         
