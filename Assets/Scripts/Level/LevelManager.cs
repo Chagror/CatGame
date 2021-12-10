@@ -41,6 +41,7 @@ public class LevelManager : MonoBehaviour
     }
     public void LoadMap(List<string> playersID, List<int[]> playersIndex, List<int[]> tileIndex) 
     {
+        _map.LoadMap(tileIndex);
         _playerManager.SetupSpawnIndex(playersIndex);
         foreach (var name in playersID)
             _playerManager.InstantiatePlayer(name);
