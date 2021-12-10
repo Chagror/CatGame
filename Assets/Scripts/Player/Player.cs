@@ -58,19 +58,42 @@ public class Player : MonoBehaviour
         {
             _deathEvent.Raise();
             _playerManager.RemovePlayer(this);
-            Debug.Log(_name + " is dead");
+            
+            #region Death Message
+            
+            if(_name == "leniumgame")
+                Debug.Log("HAHA LOIC EST MORT PTDR");
+            else if(_name == "Player 1")
+                Debug.Log("L'host est vraiment claqué au jeu");
+            else
+                Debug.Log(_name + " is dead");
+            
+            #endregion
+            
             Destroy(gameObject);
         }
     }
 
-    public IEnumerator SmoothMove(Vector3 v)
+    public IEnumerator SmoothMove(Vector3 v, Vector3 halfV)
     {
         float timer = 0;
         Vector3 tempStartPos = transform.position;
 
-        while (timer < _moveJumpPlayerTimerHarderBetterFasterStronger)
+        float halfTimer = _moveJumpPlayerTimerHarderBetterFasterStronger / 2;
+        
+        while (timer < halfTimer)
         {
-            transform.position = Vector3.Lerp(tempStartPos, v, timer / _moveJumpPlayerTimerHarderBetterFasterStronger);
+            transform.position = Vector3.Lerp(tempStartPos, halfV, timer / halfTimer);
+            timer += Time.deltaTime;
+            
+            yield return null;
+        }
+
+        timer = 0;
+        
+        while (timer < halfTimer)
+        {
+            transform.position = Vector3.Lerp(halfV, v, timer / halfTimer);
             timer += Time.deltaTime;
             
             yield return null;
