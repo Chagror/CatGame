@@ -2,12 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaverSystem : MonoBehaviour
+public abstract class SaverSystem : MonoBehaviour
 {
-    [SerializeField] private Saver _save = new LocalSaver();
-    [SerializeField] private Loader _load = new LocalLoader();
+    protected Saver _save = new LocalSaver();
+    protected Loader _load = new LocalLoader();
+    [SerializeField] private GameEvent _loaded;
     public void SaveGame() 
     {
         _save.SaveGame();
+    }
+    public void LoadGame() 
+    {
+        Save save =_load.LoadGame();
+        if (save is null) 
+        {
+            return;
+        }
+        LevelManager.instance.LoadMap(save.getPlayersID(),save.getPlayerIndex(),save.getTileIndex());
+        _loaded.Raise();
     }
 }

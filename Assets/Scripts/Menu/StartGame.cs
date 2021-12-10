@@ -21,8 +21,13 @@ public class StartGame : MonoBehaviour
     [SerializeField] private GameObject _propertiesMenu;
     [SerializeField] private GameObject _gameMenu;
     [SerializeField] private GameObject _timerHud;
-    [SerializeField] private GameEvent _initialize;
+
     [SerializeField] private GameObject _fadeImage;
+
+    [SerializeField] private GameEvent _initialize;
+    [SerializeField] private GameEvent _loadEvent;
+    [SerializeField] private GameEvent _startEvent;
+
     [FormerlySerializedAs("_fadeSpeed")] [SerializeField] private float _fadeTimer;
 
     //Ref to the script named "GameManager"
@@ -99,6 +104,16 @@ public class StartGame : MonoBehaviour
         _gameManager._gameData.volume = PlayerPrefs.GetInt("Volume");
         StartCoroutine(BlackFade());
         _initialize.Raise();
+        _startEvent.Raise();
+    }
+    public void LoadGameStart() 
+    {
+        _loadEvent.Raise();
+    }
+    public void Loaded() 
+    {
+        StartCoroutine(BlackFade());
+        _startEvent.Raise();
     }
 
     public void Quit()
