@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class Player : MonoBehaviour
     private float _jumpSize;
 
     [SerializeField] private GameEvent _deathEvent;
+    [SerializeField] private float _moveJumpPlayerTimerHarderBetterFasterStronger;
     private PlayerManager _playerManager;
 
     public void PlayerSetup(string name,int posX , int posY, float jumpSize) 
@@ -57,6 +60,20 @@ public class Player : MonoBehaviour
             _playerManager.RemovePlayer(this);
             Debug.Log(_name + " is dead");
             Destroy(gameObject);
+        }
+    }
+
+    public IEnumerator SmoothMove(Vector3 v)
+    {
+        float timer = 0;
+        Vector3 tempStartPos = transform.position;
+
+        while (timer < _moveJumpPlayerTimerHarderBetterFasterStronger)
+        {
+            transform.position = Vector3.Lerp(tempStartPos, v, timer / _moveJumpPlayerTimerHarderBetterFasterStronger);
+            timer += Time.deltaTime;
+            
+            yield return null;
         }
     }
 }
