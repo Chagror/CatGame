@@ -5,7 +5,6 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] private CommandToExecute _commandToExecute;
-    [SerializeField] private GameEvent _deleteEvent;
 
     public void Execute()
     {
@@ -14,6 +13,6 @@ public class InputManager : MonoBehaviour
             command.Value.Execute(command.Key);
         }
         _commandToExecute.CommandPerPlayer.Clear();
-        _deleteEvent.Raise();
+        StartCoroutine(LevelManager.instance.SmoothDeleteTile());
     }
 }

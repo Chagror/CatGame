@@ -74,4 +74,11 @@ public class LevelManager : MonoBehaviour
         }
         _tileindexToDelete.Clear();
     }
+
+    public IEnumerator SmoothDeleteTile()
+    {
+        yield return new WaitForSeconds(.8f);
+        DeleteTile();
+        yield return null;
+    }
 }
