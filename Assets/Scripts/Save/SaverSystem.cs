@@ -7,18 +7,19 @@ public abstract class SaverSystem : MonoBehaviour
     protected Saver _save = new LocalSaver();
     protected Loader _load = new LocalLoader();
     [SerializeField] private GameEvent _loaded;
-    public void SaveGame() 
+    public async  void SaveGame() 
     {
-        _save.SaveGame();
+        await _save.SaveGame();
+        _loaded.Raise();
     }
-    public void LoadGame() 
+    public async void LoadGame() 
     {
-        Save save =_load.LoadGame();
-        if (save is null) 
+       var saveLoaded= await _load.LoadGame() ;
+        if (saveLoaded is null) 
         {
             return;
         }
-        LevelManager.instance.LoadMap(save.getPlayersID(),save.getPlayerIndex(),save.getTileIndex());
+        LevelManager.instance.LoadMap(saveLoaded.getPlayersID(), saveLoaded.getPlayerIndex(), saveLoaded.getTileIndex());
         _loaded.Raise();
     }
 }

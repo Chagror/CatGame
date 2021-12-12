@@ -21,7 +21,7 @@ public class StartGame : MonoBehaviour
     [SerializeField] private GameObject _propertiesMenu;
     [SerializeField] private GameObject _gameMenu;
     [SerializeField] private GameObject _timerHud;
-
+    [SerializeField] private GameObject _loading;
     [SerializeField] private GameObject _fadeImage;
 
     [SerializeField] private GameEvent _initialize;
@@ -40,6 +40,7 @@ public class StartGame : MonoBehaviour
         _gameManager._gameData.propertiesMenu = _propertiesMenu;
         _gameManager._gameData.gameHud = _gameMenu;
         _gameManager._gameData.timerObject = _timerHud;
+        _gameManager._gameData.loading = _loading;
     }
 
     public void Game()
@@ -108,11 +109,11 @@ public class StartGame : MonoBehaviour
     }
     public void LoadGameStart() 
     {
+        StartCoroutine(BlackFade());
         _loadEvent.Raise();
     }
     public void Loaded() 
     {
-        StartCoroutine(BlackFade());
         _startEvent.Raise();
     }
 
