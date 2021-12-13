@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
     public void Loading()
     {
         _gameData.loading.SetActive(true);
+        _gameData.startMenu.SetActive(false);
     }
     public void LoadFinished() 
     {

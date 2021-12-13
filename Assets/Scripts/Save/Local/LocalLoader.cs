@@ -10,7 +10,7 @@ public class LocalLoader : Loader
     public override async Task<Save> LoadGame()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+        using FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
         if (file is null)
             return null;
         Save save = (Save)bf.Deserialize(file);

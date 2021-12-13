@@ -37,7 +37,7 @@ public class LocalSaver : Saver
     {
         Save save = CreateSave();
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        using FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
         if (file == null)
             return;
         bf.Serialize(file, save);
