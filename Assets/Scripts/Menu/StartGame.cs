@@ -109,7 +109,6 @@ public class StartGame : MonoBehaviour
     }
     public void LoadGameStart() 
     {
-        StartCoroutine(BlackFade());
         _loadEvent.Raise();
     }
     public void Loaded() 
