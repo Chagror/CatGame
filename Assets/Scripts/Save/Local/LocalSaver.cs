@@ -1,22 +1,23 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class LocalSaver : Saver
 {
-    public Save CreateSave() 
+    public async Task<Save> CreateSave() 
     {
         List<string> playersID = new List<string>();
-        List<int[]> playersIndex = new List<int[]>();
-        List<int[]> tileIndex = new List<int[]>();
+        List<Vector2> playersIndex = new List<Vector2>();
+        List<Vector2> tileIndex = new List<Vector2>();
         List<Player> players =  PlayerManager.instance.GetPlayerList();
         foreach (Player p in players) 
         {
             playersID.Add(p.GetName());
-            int[] index = new int[2];
+            Vector2 index = new Vector2();
             index[0] = p.GetMapIndexX();
             index[1] = p.GetMapIndexY();
             playersIndex.Add(index);
@@ -24,25 +25,34 @@ public class LocalSaver : Saver
         List<Tile> tiles = LevelManager.instance.GetTileMap().GetTiles();
         foreach (Tile tile in tiles)
         {
-            int[] index = new int[2];
+            Vector2 index = new Vector2();
             index[0] = tile.getX();
             index[1] = tile.getY();
             tileIndex.Add(index);
         }
-        Save save = new Save(playersID, playersIndex, tileIndex);
+        Save save = new Save();
+        save.playersIndex = playersIndex;
+        save.playersID = playersID;
+        save.tileIndex = tileIndex;
         Debug.Log("Saved");
         return save;
     }
     public override async Task SaveGame() 
     {
-        Save save = CreateSave();
-        BinaryFormatter bf = new BinaryFormatter();
-        using FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        Save save = await CreateSave();
+        
+        byte[] bytes = await Task.Run(() =>
+        {
+            string jsonString = JsonUtility.ToJson(save);
+            return Encoding.UTF8.GetBytes(jsonString);
+        });
+        using FileStream file = new FileStream(Application.persistentDataPath + "/gamesave.save", FileMode.Create, FileAccess.Write, FileShare.Write);
         if (file == null)
             return;
-        bf.Serialize(file, save);
+        await file.WriteAsync(bytes, 0, bytes.Length);
         file.Close();
-
+        
+        
         await Task.Delay(1000);
     }
 }

@@ -38,11 +38,11 @@ public class TileMap : MonoBehaviour
         _levelCamera.transform.position = new Vector3(tempX, 64.5f, -tempZ);
         _levelCamera.orthographicSize = _baseCameraSize * _levelSetup.cameraSizeMultiply;
     }
-    public void LoadMap(List<int[]> tileIndex) 
+    public void LoadMap(List<Vector2> tileIndex) 
     {
         foreach (var index in tileIndex)
         {
-            _map.Add(new Tile(index[0], index[1], _levelSetup.size, _levelSetup.tileObject)); ;   
+            _map.Add(new Tile((int)index[0], (int)index[1], _levelSetup.size, _levelSetup.tileObject)); ;   
         }
         Draw(_levelSetup.gapSize);
         float tempX = (((_levelManager._levelSetup.sizeX * _levelManager._levelSetup.size) +
