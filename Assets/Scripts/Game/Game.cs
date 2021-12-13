@@ -14,6 +14,9 @@ public class Game : ScriptableObject
     public GameObject propertiesMenu;
     public GameObject gameHud;
     public GameObject loading;
+    public GameObject endMenu;
+    public GameObject waitBar;
+    public Rect waitBarRectComponent;
 
     [Header("Lobby")]
     public float timerToJoin;
@@ -22,9 +25,10 @@ public class Game : ScriptableObject
     [Header("WaitForInput")] 
     public float timerForInputs;
 
-    //[Header("Move")]
+    [Header("EndGame")] 
+    public float timerEndGame;
     
-    //[Header("EndGame")]
+    //[Header("Move")]
 
     public enum State
     {

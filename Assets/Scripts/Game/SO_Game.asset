@@ -14,11 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nbPlayers: 4
   nbrePlayerControlledWithKeyBoard: 0
-  volume: 58
+  volume: 0
   startMenu: {fileID: 0}
   propertiesMenu: {fileID: 0}
   gameHud: {fileID: 0}
   loading: {fileID: 0}
+  endMenu: {fileID: 0}
+  waitBar: {fileID: 0}
+  waitBarRectComponent:
+    serializedVersion: 2
+    x: -1100
+    y: -16.742052
+    width: 0
+    height: 33.4841
   timerToJoin: 15
   timerObject: {fileID: 0}
   timerForInputs: 10
+  timerEndGame: 10

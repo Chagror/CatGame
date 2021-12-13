@@ -20,9 +20,11 @@ public class StartGame : MonoBehaviour
     [SerializeField] private GameObject _startMenu;
     [SerializeField] private GameObject _propertiesMenu;
     [SerializeField] private GameObject _gameMenu;
+    [SerializeField] private GameObject _endMenu;
     [SerializeField] private GameObject _timerHud;
     [SerializeField] private GameObject _loading;
     [SerializeField] private GameObject _fadeImage;
+    [SerializeField] private GameObject _waitBar;
 
     [SerializeField] private GameEvent _initialize;
     [SerializeField] private GameEvent _loadEvent;
@@ -38,6 +40,9 @@ public class StartGame : MonoBehaviour
         _gameManager = GameManager.instance;
         _gameManager._gameData.startMenu = _startMenu;
         _gameManager._gameData.propertiesMenu = _propertiesMenu;
+        _gameManager._gameData.endMenu = _endMenu;
+        _gameManager._gameData.waitBar = _waitBar;
+        _gameManager._gameData.waitBarRectComponent = _waitBar.GetComponent<RectTransform>().rect;
         _gameManager._gameData.gameHud = _gameMenu;
         _gameManager._gameData.timerObject = _timerHud;
         _gameManager._gameData.loading = _loading;
