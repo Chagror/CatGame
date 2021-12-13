@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class LocalSaver : Saver
@@ -32,12 +33,16 @@ public class LocalSaver : Saver
         Debug.Log("Saved");
         return save;
     }
-    public override void SaveGame() 
+    public override async Task SaveGame() 
     {
         Save save = CreateSave();
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        if (file == null)
+            return;
         bf.Serialize(file, save);
         file.Close();
+
+        await Task.Delay(1000);
     }
 }

@@ -97,6 +97,13 @@ public class GameManager : MonoBehaviour
     {
         _gameData.startMenu.SetActive(true);
     }
-
+    public void Loading()
+    {
+        _gameData.loading.SetActive(true);
+    }
+    public void LoadFinished() 
+    {
+        _gameData.loading.SetActive(false);
+    }
     #endregion
 }

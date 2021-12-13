@@ -13,6 +13,7 @@ public class Game : ScriptableObject
     public GameObject startMenu;
     public GameObject propertiesMenu;
     public GameObject gameHud;
+    public GameObject loading;
 
     [Header("Lobby")]
     public float timerToJoin;
