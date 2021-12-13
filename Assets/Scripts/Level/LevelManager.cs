@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
         }
     }
     
-    public void LoadMap(List<string> playersID, List<int[]> playersIndex, List<int[]> tileIndex) 
+    public void LoadMap(List<string> playersID, List<Vector2> playersIndex, List<Vector2> tileIndex) 
     {
         _map.LoadMap(tileIndex);
         _playerManager.SetupSpawnIndex(playersIndex);

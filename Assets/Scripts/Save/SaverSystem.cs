@@ -15,11 +15,11 @@ public abstract class SaverSystem : MonoBehaviour
     public async void LoadGame() 
     {
        var saveLoaded= await _load.LoadGame() ;
-        if (saveLoaded is null) 
+        if (saveLoaded.tileIndex.Count == 0) 
         {
             return;
         }
-        LevelManager.instance.LoadMap(saveLoaded.getPlayersID(), saveLoaded.getPlayerIndex(), saveLoaded.getTileIndex());
+        LevelManager.instance.LoadMap(saveLoaded.playersID, saveLoaded.playersIndex, saveLoaded.tileIndex);
         _loaded.Raise();
     }
 }

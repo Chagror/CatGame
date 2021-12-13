@@ -11,9 +11,14 @@ public class LocalLoader : Loader
     {
         BinaryFormatter bf = new BinaryFormatter();
         using FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
-        if (file is null)
-            return null;
-        Save save = (Save)bf.Deserialize(file);
+        byte[] bytes = new byte [file.Length];
+        await file.ReadAsync(bytes, 0, (int)file.Length);
+        //Save save = (Save)bf.Deserialize(file);
+        Save save= await Task.Run(() =>
+        {
+            string jsonData =System.Text.Encoding.UTF8.GetString(bytes);
+            return JsonUtility.FromJson<Save>(jsonData);
+        });
         file.Close();
         await Task.Delay(5000);
         return save;
