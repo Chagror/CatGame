@@ -63,43 +63,33 @@ public class StartGame : MonoBehaviour
         {
             case 0 :
                 _nbPlayers = 4;
-                _levelSetup.cameraSizeMultiply = _nbPlayers/4;
-                _levelSetup.sizeX = _nbPlayers * 2;
-                _levelSetup.sizeY = _nbPlayers * 2;
+                _levelSetup.cameraSizeMultiply = 1;
                 break;
             case 1 :
                 _nbPlayers = 8;
-                _levelSetup.cameraSizeMultiply = _nbPlayers/4;
-                _levelSetup.sizeX = _nbPlayers * 2;
-                _levelSetup.sizeY = _nbPlayers * 2;
+                _levelSetup.cameraSizeMultiply = 1.25f;
                 break;
             case 2 :
                 _nbPlayers = 16;
-                _levelSetup.cameraSizeMultiply = _nbPlayers/8;
-                _levelSetup.sizeX = _nbPlayers;
-                _levelSetup.sizeY = _nbPlayers;
+                _levelSetup.cameraSizeMultiply = 1.8f;
                 break;
             case 3 :
                 _nbPlayers = 24;
-                _levelSetup.cameraSizeMultiply = _nbPlayers/8;
-                _levelSetup.sizeX = _nbPlayers;
-                _levelSetup.sizeY = _nbPlayers;
+                _levelSetup.cameraSizeMultiply = 2.25f;
                 break;
             case 4 :
                 _nbPlayers = 32;
-                _levelSetup.cameraSizeMultiply = _nbPlayers/8;
-                _levelSetup.sizeX = _nbPlayers;
-                _levelSetup.sizeY = _nbPlayers;
+                _levelSetup.cameraSizeMultiply = 2.5f; 
                 break;
             case 5 :
                 _nbPlayers = 48;
-                _levelSetup.cameraSizeMultiply = _nbPlayers/8;
-                _levelSetup.sizeX = _nbPlayers;
-                _levelSetup.sizeY = _nbPlayers;
+                _levelSetup.cameraSizeMultiply = 3;
                 break;
             default: break;
         }
-
+        
+        _levelSetup.sizeX = Mathf.CeilToInt(Mathf.Sqrt(_nbPlayers * 3));
+        _levelSetup.sizeY = Mathf.CeilToInt(Mathf.Sqrt(_nbPlayers * 3));
         _gameManager._gameData.nbrePlayerControlledWithKeyBoard = _nbPlayersKeyboard;
         _gameManager._gameData.nbPlayers = _nbPlayers;
         _gameManager._gameData.volume = PlayerPrefs.GetInt("Volume");

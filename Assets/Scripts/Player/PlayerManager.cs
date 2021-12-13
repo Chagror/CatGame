@@ -51,7 +51,7 @@ public class PlayerManager : MonoBehaviour
                 index[0] = Random.Range(0, mapSizeX);
                 index[1] = Random.Range(0, mapSizeY);
 
-            } while (_indexes.Find(item => (item[0] == index[0] || item[1] == index[0])&& (item[1] == index[0] || item[1] == index[1]))!= null);
+            } while (_indexes.Find(item => (item[0] == index[0] && item[1] == index[1])) != null);
             _indexes.Add(index);
         }
     }

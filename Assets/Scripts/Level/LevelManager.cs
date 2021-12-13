@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
             _playerManager.InstantiatePlayer(playerName);
         }
     }
+    
     public void LoadMap(List<string> playersID, List<int[]> playersIndex, List<int[]> tileIndex) 
     {
         _map.LoadMap(tileIndex);
