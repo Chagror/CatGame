@@ -30,7 +30,7 @@ public class MenuManager : MonoBehaviour
     
     [Header("EndMenu")]
     [SerializeField] private GameObject _waitBar;
-    [SerializeField] private GameObject _endText;
+    [SerializeField] private TextMeshProUGUI _endText;
 
     [Header("GameEvents")]
     [SerializeField] private GameEvent _initialize;
@@ -47,6 +47,7 @@ public class MenuManager : MonoBehaviour
         _gameManager._gameData.propertiesMenu = _propertiesMenu;
         _gameManager._gameData.endMenu = _endMenu;
         _gameManager._gameData.waitBar = _waitBar;
+        _gameManager._gameData.endText = _endText;
         _gameManager._gameData.waitBarRectComponent = _waitBar.GetComponent<RectTransform>().rect;
         _gameManager._gameData.gameHud = _gameMenu;
         _gameManager._gameData.timerObject = _timerHud;

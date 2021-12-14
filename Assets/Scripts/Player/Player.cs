@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         {
             _deathEvent.Raise();
             _playerManager.RemovePlayer(this);
-            
+
             #region Death Message
             
             if(_name == "leniumgame")

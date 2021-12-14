@@ -803,7 +803,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 1
 --- !u!222 &168076485
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1909,7 +1909,7 @@ MonoBehaviour:
   _fadeImage: {fileID: 1532452521}
   _fadeTimer: 1
   _waitBar: {fileID: 505099879}
-  _endText: {fileID: 824197037}
+  _endText: {fileID: 824197039}
   _initialize: {fileID: 11400000, guid: b538d9c0bfc602e4a80383fa49a7c077, type: 2}
   _loadEvent: {fileID: 11400000, guid: 6be026a42b5f8a2418654c13a3259884, type: 2}
   _startEvent: {fileID: 11400000, guid: a03e45fcef6cc4c4797c210bea7430cd, type: 2}
@@ -1984,7 +1984,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3998,7 +3998,7 @@ MonoBehaviour:
   m_CaptionImage: {fileID: 0}
   m_ItemText: {fileID: 846580697}
   m_ItemImage: {fileID: 0}
-  m_Value: 0
+  m_Value: 1
   m_Options:
     m_Options:
     - m_Text: 0
