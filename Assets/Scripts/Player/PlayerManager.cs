@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject _playerPrefabs;
     [SerializeField] private float _playerHeightSpawn;
     [SerializeField] private List<Player> _players = new List<Player>();
+    [SerializeField] private CommandToExecute _commandToExecute;
     private GameManager _gameManager;
     private List<int[]> _indexes = new List<int[]>();
 
@@ -86,5 +87,6 @@ public class PlayerManager : MonoBehaviour
     public void RemovePlayer(Player player)
     {
         _players.Remove(player);
+        _commandToExecute.CommandPerPlayer.Remove(player);
     }
 }
