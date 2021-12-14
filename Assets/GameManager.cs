@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
     {
         _gameData.endMenu.SetActive(true);
 
-        _playerManager.GetPlayerList()[0].GetName();
+        _gameData.endText.text = _playerManager.GetPlayerList()[0].GetName() + " just won!!";
         _tempTimerEndGame -= Time.deltaTime;
         
         float delta = _tempTimerEndGame / _gameData.timerEndGame;

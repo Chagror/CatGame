@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameManager", menuName = "ScriptableObjects/Game/GameManager", order = 1)]
@@ -16,7 +17,7 @@ public class Game : ScriptableObject
     public GameObject loading;
     public GameObject endMenu;
     public GameObject waitBar;
-    public GameObject endText;
+    public TextMeshProUGUI endText;
     public Rect waitBarRectComponent;
 
     [Header("Lobby")]
