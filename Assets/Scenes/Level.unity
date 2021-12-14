@@ -403,6 +403,7 @@ MonoBehaviour:
   _playerPrefabs: {fileID: 2904882857119786692, guid: fa9de6d0711a7f84aa2db4b3a09dcb3b, type: 3}
   _playerHeightSpawn: 1
   _players: []
+  _commandToExecute: {fileID: 11400000, guid: f09fb5bae3e1e2b4a8c2d58e07dd912f, type: 2}
 --- !u!114 &1807800323
 MonoBehaviour:
   m_ObjectHideFlags: 0

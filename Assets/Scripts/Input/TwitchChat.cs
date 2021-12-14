@@ -85,6 +85,7 @@ public class TwitchChat : MonoBehaviour
 
                 splitPoint = message.IndexOf("!", 1);
                 message = message.Substring(splitPoint);
+                Debug.Log(message);
                 
                 if (message[0] == '!')
                 {
@@ -96,10 +97,10 @@ public class TwitchChat : MonoBehaviour
                     else if (_gameManager.state == Game.State.WaitForInput)
                     {
                         if (!_commandReaded.CommandPerPlayer.ContainsKey(chatName))
-                            _commandReaded.CommandPerPlayer.Add(chatName, line);
+                            _commandReaded.CommandPerPlayer.Add(chatName, message);
                         else
                         {
-                            _commandReaded.CommandPerPlayer[chatName] = line;
+                            _commandReaded.CommandPerPlayer[chatName] = message;
                         }
                         PassDictionary();
                     }
