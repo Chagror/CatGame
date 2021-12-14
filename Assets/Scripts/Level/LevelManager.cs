@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerManager _playerManager;
     [SerializeField] public LevelSetup _levelSetup;
 
-    private List<int[]> _tileindexToDelete=new List<int[]>();
+    private List<int[]> _tileindexToDelete = new List<int[]>();
 
     public void InitializeMap()
     {
@@ -39,13 +39,15 @@ public class LevelManager : MonoBehaviour
             _playerManager.InstantiatePlayer(playerName, "#000000");
         }
     }
-    
-    public void LoadMap(List<string> playersID, List<Vector2> playersIndex, List<Vector2> tileIndex) 
+
+    public void LoadMap(List<string> playersID, List<Vector2> playersIndex, List<string> colors, List<Vector2> tileIndex)
     {
         _map.LoadMap(tileIndex);
         _playerManager.SetupSpawnIndex(playersIndex);
-        foreach (var name in playersID)
-            _playerManager.InstantiatePlayer(name, "#000000");
+        for (int i = 0; i < playersID.Count; i++)
+        {
+            _playerManager.InstantiatePlayer(playersID[i], colors[i]);
+        }
 
     }
     public void PrepareTileToDeleteNextRound()
@@ -62,7 +64,7 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
-    public TileMap GetTileMap() 
+    public TileMap GetTileMap()
     {
         return _map;
     }
@@ -70,13 +72,16 @@ public class LevelManager : MonoBehaviour
     {
         if (_tileindexToDelete.Count == 0)
             return;
-        foreach (int[] tileIndex in _tileindexToDelete) 
+        foreach (int[] tileIndex in _tileindexToDelete)
         {
             _map.DeleteTile(tileIndex[1], tileIndex[0]);
         }
         _tileindexToDelete.Clear();
     }
-
+    public void DeleteAllTile()
+    {
+        _map.DeleteAll();
+    }
     public IEnumerator SmoothDeleteTile()
     {
         yield return new WaitForSeconds(.8f);

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameEvent _executePhase;
     [SerializeField] private GameEvent _prepareToDelete;
+    [SerializeField] private GameEvent _endGame;
     private PlayerManager _playerManager;
     private float _tempTimer;
     private float _tempTimerInput;
@@ -124,6 +125,7 @@ public class GameManager : MonoBehaviour
         {
             //Yeah, awful, but i need to put it here, bc in a state for the start state, the variables are not passed to the SO,
             //so no way to enable or disable them.
+            _endGame.Raise();
             state = Game.State.Start;
             _gameData.startMenu.SetActive(true);
             _gameData.endMenu.SetActive(false);

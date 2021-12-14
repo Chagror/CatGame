@@ -19,7 +19,7 @@ public abstract class SaverSystem : MonoBehaviour
         {
             return;
         }
-        LevelManager.instance.LoadMap(saveLoaded.playersID, saveLoaded.playersIndex, saveLoaded.tileIndex);
+        LevelManager.instance.LoadMap(saveLoaded.playersID, saveLoaded.playersIndex, saveLoaded.colors,saveLoaded.tileIndex);
         _loaded.Raise();
     }
 }

@@ -208,6 +208,7 @@ MonoBehaviour:
   state: 0
   _executePhase: {fileID: 11400000, guid: f7123787602205f44bb6da623d6227ec, type: 2}
   _prepareToDelete: {fileID: 11400000, guid: 2e8ad6b0be953634d97a98b45ac741fe, type: 2}
+  _endGame: {fileID: 11400000, guid: 00acc0abadc83f844a150feff72dd31b, type: 2}
 --- !u!4 &347959695
 Transform:
   m_ObjectHideFlags: 0

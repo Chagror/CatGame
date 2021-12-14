@@ -11,6 +11,7 @@ public class LocalSaver : Saver
     public async Task<Save> CreateSave() 
     {
         List<string> playersID = new List<string>();
+        List<string> colors = new List<string>();
         List<Vector2> playersIndex = new List<Vector2>();
         List<Vector2> tileIndex = new List<Vector2>();
         List<Player> players =  PlayerManager.instance.GetPlayerList();
@@ -23,6 +24,7 @@ public class LocalSaver : Saver
                 index[0] = p.GetMapIndexX();
                 index[1] = p.GetMapIndexY();
                 playersIndex.Add(index);
+                colors.Add(p.GetColor());
             }
         });
         List<Tile> tiles = LevelManager.instance.GetTileMap().GetTiles();
@@ -40,6 +42,7 @@ public class LocalSaver : Saver
         save.playersIndex = playersIndex;
         save.playersID = playersID;
         save.tileIndex = tileIndex;
+        save.colors = colors;
         Debug.Log("Saved");
         return save;
     }

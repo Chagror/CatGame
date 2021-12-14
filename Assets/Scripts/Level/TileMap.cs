@@ -96,6 +96,14 @@ public class TileMap : MonoBehaviour
         toDelete.delete();
         
     }
+    public void DeleteAll() 
+    {
+        while (_map.Count > 0) 
+        {
+            _map[0].delete();
+            _map.RemoveAt(0);
+        }
+    }
     public List<Tile> GetTiles()
     {
         return _map;
