@@ -20,7 +20,7 @@ public class LocalLoader : Loader
             return JsonUtility.FromJson<Save>(jsonData);
         });
         file.Close();
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         return save;
     }
 }
