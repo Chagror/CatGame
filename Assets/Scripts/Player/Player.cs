@@ -12,17 +12,19 @@ public class Player : MonoBehaviour
     private int _posX;
     private int _posY;
     private float _jumpSize;
+    private string _color;
 
     [SerializeField] private GameEvent _deathEvent;
     [SerializeField] private float _moveJumpPlayerTimerHarderBetterFasterStronger;
     private PlayerManager _playerManager;
 
-    public void PlayerSetup(string name,int posX , int posY, float jumpSize) 
+    public void PlayerSetup(string name,int posX , int posY, float jumpSize, string color) 
     {
         _name = name;
         _posX = posX;
         _posY = posY;
         _jumpSize = jumpSize;
+        _color = color;
         
         _playerManager = PlayerManager.instance;
     }
@@ -30,6 +32,11 @@ public class Player : MonoBehaviour
     public string GetName()
     {
         return _name;
+    }
+
+    public string GetColor()
+    {
+        return _color;
     }
     public float GetJumpSize()
     {

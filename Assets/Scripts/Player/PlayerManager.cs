@@ -67,7 +67,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void InstantiatePlayer(string playerName)
+    public void InstantiatePlayer(string playerName, string playerColor)
     {
         if ( _players.Count >= _gameManager._gameData.nbPlayers || _players.Find(p=>p.GetName().Equals(playerName)) )
             return;
@@ -78,7 +78,7 @@ public class PlayerManager : MonoBehaviour
         pos.y = _playerHeightSpawn;
         Player newPlayer = (Player)Instantiate(_playerPrefabs, pos, Quaternion.identity,_parent).GetComponent(typeof(Player));
         
-        newPlayer.PlayerSetup(playerName, _indexes[_players.Count][0], _indexes[_players.Count][1], _levelSetup.size+ _levelSetup.gapSize);
+        newPlayer.PlayerSetup(playerName, _indexes[_players.Count][0], _indexes[_players.Count][1], _levelSetup.size+ _levelSetup.gapSize, playerColor);
         
         _players.Add(newPlayer);
     }

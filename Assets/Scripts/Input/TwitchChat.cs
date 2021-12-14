@@ -48,6 +48,7 @@ public class TwitchChat : MonoBehaviour
         _writer.WriteLine("NICK " + username);
         _writer.WriteLine("USER " + username + " 8 * :" + username);
         _writer.WriteLine("JOIN #" + channelName);
+        _writer.WriteLine("CAP REQ :twitch.tv/tags"); 
         _writer.Flush();
     }
 
@@ -57,38 +58,48 @@ public class TwitchChat : MonoBehaviour
 
         if (_twitchClient.Available > 0)
         {
-            var message = _reader.ReadLine();
+            var line = _reader.ReadLine();
             
             //Get infos of the message
-            if (message == "")
+            if (line == "")
                 return;
-            
-            if (message.Contains("PRIVMSG"))
+
+            if (line.Contains("PRIVMSG"))
             {
-                //Get username
-                var splitpoint = message.IndexOf("!", 1);
-                var chatName = message.Substring(0, splitpoint);
-                chatName = chatName.Substring(1);
+                string[] splits = line.Split(';');
+                
+                //Get the name of the user
+                var chatName = splits[4];
+                var splitPoint = chatName.IndexOf("=", 1);
+                chatName = chatName.Substring(splitPoint + 1);
+                
+                //Get the color of the user
+                var chatColor = splits[3];
+                splitPoint = chatColor.IndexOf("=", 1);
+                chatColor = chatColor.Substring(splitPoint + 1);
 
-                //Get user message
-                splitpoint = message.IndexOf(":", 1);
-                message = message.Substring(splitpoint + 1);
-                print(String.Format("{0}: {1}", chatName, message));
+                //Get the message of the user
+                var message = splits[splits.Length - 1];
+                splitPoint = message.IndexOf("#", 1);
+                message = message.Substring(splitPoint);
 
+                splitPoint = message.IndexOf("!", 1);
+                message = message.Substring(splitPoint);
+                
                 if (message[0] == '!')
                 {
-                    if(_gameManager.state == Game.State.Lobby && message.Contains("join"))
+                    if(_gameManager.state == Game.State.Lobby && line.Contains("join"))
                     {
                         //Call method to create prefab
-                        _playerManager.InstantiatePlayer(chatName);
+                        _playerManager.InstantiatePlayer(chatName, chatColor);
                     }
                     else if (_gameManager.state == Game.State.WaitForInput)
                     {
                         if (!_commandReaded.CommandPerPlayer.ContainsKey(chatName))
-                            _commandReaded.CommandPerPlayer.Add(chatName, message);
+                            _commandReaded.CommandPerPlayer.Add(chatName, line);
                         else
                         {
-                            _commandReaded.CommandPerPlayer[chatName] = message;
+                            _commandReaded.CommandPerPlayer[chatName] = line;
                         }
                         PassDictionary();
                     }

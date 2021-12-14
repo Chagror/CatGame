@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
         for (var i = 1; i <= _gameData.nbrePlayerControlledWithKeyBoard; i++)
         {
             var playerName = "Player " + (i);
-            _playerManager.InstantiatePlayer(playerName);
+            _playerManager.InstantiatePlayer(playerName, "#000000");
         }
     }
     
@@ -45,7 +45,7 @@ public class LevelManager : MonoBehaviour
         _map.LoadMap(tileIndex);
         _playerManager.SetupSpawnIndex(playersIndex);
         foreach (var name in playersID)
-            _playerManager.InstantiatePlayer(name);
+            _playerManager.InstantiatePlayer(name, "#000000");
 
     }
     public void PrepareTileToDeleteNextRound()
