@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
 public class Player : MonoBehaviour
@@ -13,7 +15,8 @@ public class Player : MonoBehaviour
     private int _posY;
     private float _jumpSize;
     private string _color;
-
+    [SerializeField] private List<GameObject> _gameObjects;
+    [SerializeField] private Transform _playerLocalSpawn;
     [SerializeField] private GameEvent _deathEvent;
     [SerializeField] private float _moveJumpPlayerTimerHarderBetterFasterStronger;
     private PlayerManager _playerManager;
@@ -27,6 +30,11 @@ public class Player : MonoBehaviour
         _color = color;
         
         _playerManager = PlayerManager.instance;
+
+        Vector3 tempTransform = _playerLocalSpawn.transform.position;
+        tempTransform.y = _playerLocalSpawn.position.y;
+        Instantiate(_gameObjects[Random.Range(0,_gameObjects.Count)], tempTransform, Quaternion.identity, this.gameObject.transform);
+        
     }
 
     public string GetName()
