@@ -85,7 +85,6 @@ public class TwitchChat : MonoBehaviour
 
                 splitPoint = message.IndexOf("!", 1);
                 message = message.Substring(splitPoint);
-                Debug.Log(message);
                 
                 if (message[0] == '!')
                 {
