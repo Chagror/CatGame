@@ -7,30 +7,35 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class StartGame : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
-    //Dropdown of the menu
+    [Header("Dropdown")]
     [SerializeField] private Dropdown _dropdownNbPlayer;
     [SerializeField] private Dropdown _dropdownNbPlayerTotal;
     [SerializeField] private LevelSetup _levelSetup;
     private int _nbPlayers;
     private int _nbPlayersKeyboard;
 
-    //Both ref to the menus
+    [Header("Menus")]
     [SerializeField] private GameObject _startMenu;
     [SerializeField] private GameObject _propertiesMenu;
     [SerializeField] private GameObject _gameMenu;
     [SerializeField] private GameObject _endMenu;
+    
+    [Header("HudInGame")]
     [SerializeField] private GameObject _timerHud;
     [SerializeField] private GameObject _loading;
     [SerializeField] private GameObject _fadeImage;
+    [SerializeField] private float _fadeTimer;
+    
+    [Header("EndMenu")]
     [SerializeField] private GameObject _waitBar;
+    [SerializeField] private GameObject _endText;
 
+    [Header("GameEvents")]
     [SerializeField] private GameEvent _initialize;
     [SerializeField] private GameEvent _loadEvent;
     [SerializeField] private GameEvent _startEvent;
-
-    [FormerlySerializedAs("_fadeSpeed")] [SerializeField] private float _fadeTimer;
 
     //Ref to the script named "GameManager"
     private GameManager _gameManager;

@@ -16,6 +16,7 @@ public class Game : ScriptableObject
     public GameObject loading;
     public GameObject endMenu;
     public GameObject waitBar;
+    public GameObject endText;
     public Rect waitBarRectComponent;
 
     [Header("Lobby")]
@@ -27,8 +28,6 @@ public class Game : ScriptableObject
 
     [Header("EndGame")] 
     public float timerEndGame;
-    
-    //[Header("Move")]
 
     public enum State
     {

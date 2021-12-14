@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     private float _tempTimer;
     private float _tempTimerInput;
     private float _tempTimerEndGame;
-    private GameObject _waitBarEnd;
     private float _waitBarSizeStart;
 
     private void Start()
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour
         _tempTimer = _gameData.timerToJoin;
         _tempTimerInput = _gameData.timerForInputs;
         _tempTimerEndGame = _gameData.timerEndGame;
-        _waitBarEnd = _gameData.waitBar;
         _waitBarSizeStart = _gameData.waitBarRectComponent.width;
     }
 
@@ -112,13 +110,15 @@ public class GameManager : MonoBehaviour
     {
         _gameData.endMenu.SetActive(true);
 
+        _playerManager.GetPlayerList()[0].GetName();
         _tempTimerEndGame -= Time.deltaTime;
         
         float delta = _tempTimerEndGame / _gameData.timerEndGame;
         Debug.Log(_waitBarSizeStart * delta);
         
-        Rect tempBar = _gameData.waitBar.GetComponent<RectTransform>().rect;
-        tempBar.width = _waitBarSizeStart * delta;
+        var tempBar = _gameData.waitBar.GetComponent<RectTransform>();
+
+        tempBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _waitBarSizeStart * delta);
 
         if (_tempTimerEndGame <= 0)
         {
