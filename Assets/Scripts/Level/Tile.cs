@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile : ScriptableObject
 {
     private GameObject _tileObject;
     private int _poseX;
     private int _poseY;
     private float _tileSize;
 
-    public Tile(int poseX, int poseY, float tileSize, GameObject tileObject)
+    public void Setup(int poseX, int poseY, float tileSize, GameObject tileObject)
     {
         this._poseX = poseX;
         this._poseY = poseY;

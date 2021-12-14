@@ -21,11 +21,14 @@ public class TileMap : MonoBehaviour
 
     public void  CreateTileMap() 
     {
+        Tile newTile = ScriptableObject.CreateInstance<Tile>();
         for (int i = 0; i < _levelSetup.sizeY; i++)
         {
             for (int j = 0; j < _levelSetup.sizeX; j++)
             {
-                _map.Add(new Tile(j, i, _levelSetup.size, _levelSetup.tileObject));
+                Tile tempTile = Instantiate(newTile);
+                tempTile.Setup(j, i, _levelSetup.size, _levelSetup.tileObject);
+                _map.Add(tempTile);
             }
         }
 
@@ -40,9 +43,12 @@ public class TileMap : MonoBehaviour
     }
     public void LoadMap(List<Vector2> tileIndex) 
     {
+        Tile newTile = ScriptableObject.CreateInstance<Tile>();
         foreach (var index in tileIndex)
         {
-            _map.Add(new Tile((int)index[0], (int)index[1], _levelSetup.size, _levelSetup.tileObject)); ;   
+            Tile tempTile = Instantiate(newTile);
+            tempTile.Setup((int)index[0], (int)index[1], _levelSetup.size, _levelSetup.tileObject);
+            _map.Add(tempTile);
         }
         Draw(_levelSetup.gapSize);
         float tempX = (((_levelManager._levelSetup.sizeX * _levelManager._levelSetup.size) +

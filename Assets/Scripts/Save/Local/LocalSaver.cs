@@ -14,23 +14,29 @@ public class LocalSaver : Saver
         List<Vector2> playersIndex = new List<Vector2>();
         List<Vector2> tileIndex = new List<Vector2>();
         List<Player> players =  PlayerManager.instance.GetPlayerList();
-        foreach (Player p in players) 
+        await Task.Run(() =>
         {
-            playersID.Add(p.GetName());
-            Vector2 index = new Vector2();
-            index[0] = p.GetMapIndexX();
-            index[1] = p.GetMapIndexY();
-            playersIndex.Add(index);
-        }
+            foreach (Player p in players)
+            {
+                playersID.Add(p.GetName());
+                Vector2 index = new Vector2();
+                index[0] = p.GetMapIndexX();
+                index[1] = p.GetMapIndexY();
+                playersIndex.Add(index);
+            }
+        });
         List<Tile> tiles = LevelManager.instance.GetTileMap().GetTiles();
-        foreach (Tile tile in tiles)
+        await Task.Run(() =>
         {
-            Vector2 index = new Vector2();
-            index[0] = tile.getX();
-            index[1] = tile.getY();
-            tileIndex.Add(index);
-        }
-        Save save = new Save();
+            foreach (Tile tile in tiles)
+            {
+                Vector2 index = new Vector2();
+                index[0] = tile.getX();
+                index[1] = tile.getY();
+                tileIndex.Add(index);
+            }
+        });
+            Save save = new Save();
         save.playersIndex = playersIndex;
         save.playersID = playersID;
         save.tileIndex = tileIndex;
