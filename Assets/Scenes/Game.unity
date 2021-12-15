@@ -158,6 +158,7 @@ MonoBehaviour:
   - Input
   - Sound
   - Save
+  - GoogleSheet
 --- !u!4 &246383215
 Transform:
   m_ObjectHideFlags: 0

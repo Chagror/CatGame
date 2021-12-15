@@ -37,6 +37,15 @@ public class PlayerManager : MonoBehaviour
     {
         return _players;
     }
+    public List<object> GetPlayerName()
+    {
+        List<object> playerNames = new List<object>();
+        foreach(Player p in _players) 
+        {
+            playerNames.Add(p.GetName());
+        }
+        return playerNames;
+    }
     public void RandomizeSpawn(int nbPlayer, TileMap map)
     {
         _indexes = new List<int[]>();

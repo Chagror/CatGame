@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameEvent _prepareToDelete;
     [SerializeField] private GameEvent _endGame;
     private PlayerManager _playerManager;
+    private GoogleSheetClient _googleSheetClient;
     private float _tempTimer;
     private float _tempTimerInput;
     private float _tempTimerEndGame;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
         _tempTimerInput = _gameData.timerForInputs;
         _tempTimerEndGame = _gameData.timerEndGame;
         _waitBarSizeStart = _gameData.waitBarRectComponent.width;
+        
     }
 
     private void Update()
@@ -63,6 +65,11 @@ public class GameManager : MonoBehaviour
     #region States methods
     private void Lobby()
     {
+        if(_googleSheetClient is null) 
+        { 
+                _googleSheetClient = GoogleSheetClient.instance;
+                _googleSheetClient.ReadTimers(_gameData);
+        }
         _gameData.startMenu.SetActive(false);
         _gameData.gameHud.SetActive(true);
         _gameData.endMenu.SetActive(false);
@@ -72,7 +79,9 @@ public class GameManager : MonoBehaviour
 
         if (_tempTimer <= 0)
         {
+            _googleSheetClient.WritePlayers();
             state = Game.State.WaitForInput;
+            _googleSheetClient.WritePlayers();
         }
     }
 
