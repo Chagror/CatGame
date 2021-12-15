@@ -11,7 +11,8 @@
                     "id": "ccf752a8-d295-47c9-b250-dee07d2e42ff",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Down",
@@ -19,7 +20,8 @@
                     "id": "82076731-f051-4f38-ae1c-0082cd8cea1f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Left",
@@ -27,7 +29,8 @@
                     "id": "4749c3da-516f-4e09-b5fb-2b6eb4944ad6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Right",
@@ -35,7 +38,8 @@
                     "id": "f95b729a-8a77-4d0c-af73-a5eda7fe4cc2",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Test",
@@ -43,7 +47,8 @@
                     "id": "33a3df74-ae29-4758-8c99-ed028092bec6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Save",
@@ -51,7 +56,44 @@
                     "id": "529e7962-01f1-4ada-95a8-6afa3aab6e3d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Up2",
+                    "type": "Button",
+                    "id": "70aeba27-e9df-4506-ac0d-4e43456669d9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Down2",
+                    "type": "Button",
+                    "id": "d38f98a0-4f4a-432d-8e5f-8855373f6772",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left2",
+                    "type": "Button",
+                    "id": "c4092a4b-563c-4e46-9da9-f6d72741cfcc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right2",
+                    "type": "Button",
+                    "id": "67d8d65a-03a8-4f2f-ab71-9f7c7dd75e9f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -120,6 +162,50 @@
                     "action": "Save",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "032cceb6-eedf-452a-8645-5f6a31c696e7",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "845ce58c-9ddb-42b0-90cb-9d93efc596b8",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ae16ce3-f50f-475f-b712-00bb9b72b5bd",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebe2d66e-70ba-4eac-8ed3-81364d4e211d",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -133,7 +219,8 @@
                     "id": "8f0f4670-7550-4ff1-9c75-83afc929cf58",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

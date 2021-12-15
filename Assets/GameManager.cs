@@ -115,7 +115,6 @@ public class GameManager : MonoBehaviour
         _tempTimerEndGame -= Time.deltaTime;
         
         float delta = _tempTimerEndGame / _gameData.timerEndGame;
-        Debug.Log(_waitBarSizeStart * delta);
         
         var tempBar = _gameData.waitBar.GetComponent<RectTransform>();
 
