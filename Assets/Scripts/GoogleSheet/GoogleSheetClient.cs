@@ -51,10 +51,10 @@ public class GoogleSheetClient : MonoBehaviour
     }
     public async Task ConnectAsync()
     {
-        //string credentialDirectory = Path.Combine(Application.dataPath, _credentialsPath);
-        //string credentialPath = Path.Combine(credentialDirectory, _credentialFile);
-        string credentialDirectory = Path.Combine(Application.streamingAssetsPath, _credentialsPath);
+        string credentialDirectory = Path.Combine(Application.dataPath, _credentialsPath);
         string credentialPath = Path.Combine(credentialDirectory, _credentialFile);
+        //string credentialDirectory = Path.Combine(Application.streamingAssetsPath, _credentialsPath);
+        //string credentialPath = Path.Combine(credentialDirectory, _credentialFile);
         if (!Directory.Exists(credentialDirectory))
         {
             Directory.CreateDirectory(credentialDirectory);
