@@ -61,7 +61,30 @@ public class LevelManager : MonoBehaviour
             if ((posX >= 0 && posX <= _levelSetup.sizeX) && (posY >= 0 && posY <= _levelSetup.sizeY))
             {
                 int[] index = new int[2] { posY, posX };
-                _tileindexToDelete.Add(index);
+                bool toDelete = false;
+
+                if (_tileindexToDelete.Count > 0)
+                {
+                    foreach (int[] tileIndex in _tileindexToDelete)
+                    {
+                        if (index[0] == tileIndex[0] && index[1] == tileIndex[1])
+                        {
+                            toDelete = true;
+                        }
+                    }
+                    
+                    if (toDelete)
+                    {
+                        _tileindexToDelete.Remove(index);
+                        _map.DeleteTile(index[1], index[0]);
+                    }
+                    else
+                        _tileindexToDelete.Add(index);
+                }
+                else
+                    _tileindexToDelete.Add(index);
+
+                
             }
         }
     }
