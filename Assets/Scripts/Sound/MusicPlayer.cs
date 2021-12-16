@@ -9,6 +9,10 @@ public class MusicPlayer : SoundPlayer
     [SerializeField] private bool onStart;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Game _gameManager;
+    public void Stop() 
+    {
+        audioSource.Stop();
+    }
     public override void Play()
     {
         if (_loop.length == 0 || _loop.length == 0)

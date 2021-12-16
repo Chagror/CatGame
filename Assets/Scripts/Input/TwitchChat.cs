@@ -88,12 +88,12 @@ public class TwitchChat : MonoBehaviour
                 
                 if (message[0] == '!')
                 {
-                    if(_gameManager.state == Game.State.Lobby && line.Contains("join"))
+                    if(_gameManager._gameData.stateGame.stateEnum == State.StateEnum.Lobby && line.Contains("join"))
                     {
                         //Call method to create prefab
                         _playerManager.InstantiatePlayer(chatName, chatColor);
                     }
-                    else if (_gameManager.state == Game.State.WaitForInput)
+                    else if (_gameManager._gameData.stateGame.stateEnum == State.StateEnum.WaitForInput)
                     {
                         if (!_commandReaded.CommandPerPlayer.ContainsKey(chatName))
                             _commandReaded.CommandPerPlayer.Add(chatName, message);

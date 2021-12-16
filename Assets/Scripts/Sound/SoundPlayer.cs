@@ -6,4 +6,5 @@ public abstract class SoundPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
     public abstract void Play();
+    
 }

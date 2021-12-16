@@ -12,6 +12,5 @@ public class InputManager : MonoBehaviour
         {
             command.Value.Execute(command.Key);
         }
-        StartCoroutine(LevelManager.instance.SmoothDeleteTile());
     }
 }

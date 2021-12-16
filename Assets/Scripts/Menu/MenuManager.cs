@@ -104,7 +104,8 @@ public class MenuManager : MonoBehaviour
         _gameManager._gameData.nbrePlayerControlledWithKeyBoard = _nbPlayersKeyboard;
         _gameManager._gameData.nbPlayers = _nbPlayers;
         _gameManager._gameData.volume = PlayerPrefs.GetInt("Volume");
-        StartCoroutine(BlackFade(global::Game.State.Lobby));
+        StartCoroutine(BlackFade());
+
         _initialize.Raise();
         _startEvent.Raise();
     }
@@ -122,7 +123,7 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator BlackFade(Game.State state)
+    IEnumerator BlackFade()
     {
         float timer = 0;
         //Awful
@@ -139,7 +140,6 @@ public class MenuManager : MonoBehaviour
 
         
         yield return new WaitForSeconds(1);
-        _gameManager.state = state;
         timer = 0;
 
         while (timer < _fadeTimer)

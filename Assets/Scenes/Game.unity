@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 347959697}
   - component: {fileID: 347959696}
   - component: {fileID: 347959698}
+  - component: {fileID: 347959699}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -206,10 +207,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: 2dfe97630f83c71489ef2cd079ea4983, type: 2}
-  state: 0
+  SaveState: {fileID: 11400000, guid: 1db5a051ab74e104cbb09255f03897fb, type: 2}
+  StartState: {fileID: 11400000, guid: 522b439dc381f2e4b9733d4d7de73783, type: 2}
   _executePhase: {fileID: 11400000, guid: f7123787602205f44bb6da623d6227ec, type: 2}
   _prepareToDelete: {fileID: 11400000, guid: 2e8ad6b0be953634d97a98b45ac741fe, type: 2}
   _endGame: {fileID: 11400000, guid: 00acc0abadc83f844a150feff72dd31b, type: 2}
+  _deleteTile: {fileID: 11400000, guid: 002f280b8f5cf8341acdb3192956e7b8, type: 2}
+  _startGame: {fileID: 11400000, guid: a03e45fcef6cc4c4797c210bea7430cd, type: 2}
 --- !u!4 &347959695
 Transform:
   m_ObjectHideFlags: 0
@@ -299,6 +303,34 @@ MonoBehaviour:
       - m_Target: {fileID: 347959694}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Loading
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &347959699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347959693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426c60598433ff94481a2bcd28a3ff9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: a03e45fcef6cc4c4797c210bea7430cd, type: 2}
+  _onEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 347959694}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GoNextState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

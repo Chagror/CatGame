@@ -53,6 +53,7 @@ public class LevelManager : MonoBehaviour
     public void PrepareTileToDeleteNextRound()
     {
         List<Player> players = _playerManager.GetPlayerList();
+        _tileindexToDelete.Clear();
         foreach (Player player in players)
         {
             int posX = player.GetMapIndexX();
@@ -81,11 +82,5 @@ public class LevelManager : MonoBehaviour
     public void DeleteAllTile()
     {
         _map.DeleteAll();
-    }
-    public IEnumerator SmoothDeleteTile()
-    {
-        yield return new WaitForSeconds(.8f);
-        DeleteTile();
-        yield return null;
     }
 }

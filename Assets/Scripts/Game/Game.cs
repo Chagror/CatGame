@@ -19,6 +19,7 @@ public class Game : ScriptableObject
     public GameObject waitBar;
     public TextMeshProUGUI endText;
     public Rect waitBarRectComponent;
+    public State stateGame;
 
     [Header("Lobby")]
     public float timerToJoin;
@@ -30,12 +31,4 @@ public class Game : ScriptableObject
     [Header("EndGame")] 
     public float timerEndGame;
 
-    public enum State
-    {
-        Start,
-        Lobby,
-        WaitForInput,
-        Move,
-        EndGame
-    };
 }

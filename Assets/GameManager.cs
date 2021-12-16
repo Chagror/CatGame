@@ -16,140 +16,92 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public Game _gameData;
-    public Game.State state;
-
+    [SerializeField] private State SaveState;
+    [SerializeField] private State StartState;
     [SerializeField] private GameEvent _executePhase;
     [SerializeField] private GameEvent _prepareToDelete;
     [SerializeField] private GameEvent _endGame;
+    [SerializeField] private GameEvent _deleteTile;
+    [SerializeField] private GameEvent _startGame;
     private PlayerManager _playerManager;
     private GoogleSheetClient _googleSheetClient;
-    private float _tempTimer;
-    private float _tempTimerInput;
-    private float _tempTimerEndGame;
-    private float _waitBarSizeStart;
+    //private float _tempTimer;
+    //private float _tempTimerInput;
+    //private float _tempTimerEndGame;
+    //private float _waitBarSizeStart;
 
     private void Start()
     {
-        _playerManager = PlayerManager.instance;
-        _tempTimer = _gameData.timerToJoin;
-        _tempTimerInput = _gameData.timerForInputs;
-        _tempTimerEndGame = _gameData.timerEndGame;
-        _waitBarSizeStart = _gameData.waitBarRectComponent.width;
-        
-    }
+        _gameData.stateGame = StartState;
+        //_playerManager = PlayerManager.instance;
+        //_tempTimer = _gameData.timerToJoin;
+        //_tempTimerInput = _gameData.timerForInputs;
+        //_tempTimerEndGame = _gameData.timerEndGame;
+        //_waitBarSizeStart = _gameData.waitBarRectComponent.width;
 
+    }
+    public void GoNextState() 
+    {
+        _gameData.stateGame.GoNextState();
+        _gameData.stateGame.BeginState();
+    }
     private void Update()
     {
-        switch (state)
+        _gameData.stateGame.Looping();
+    }
+    public void WriteGoogle()
+    {
+        if (_googleSheetClient is null)
         {
-            case Game.State.Lobby:
-                Lobby();
-                break;
-            case Game.State.WaitForInput:
-                WaitForInput();
-                break;
-            case Game.State.Move:
-                Move();
-                break;
-            case Game.State.EndGame:
-                EndGame();
-                break;
-            default: break;
+            _googleSheetClient = GoogleSheetClient.instance;
         }
+        _googleSheetClient.WritePlayers();
     }
-    public void SetWaitForInput()
+    public void ReadGoogle()
     {
-        state = Game.State.WaitForInput;
-    }
-
-    #region States methods
-    private void Lobby()
-    {
-        if(_googleSheetClient is null) 
-        { 
-                _googleSheetClient = GoogleSheetClient.instance;
-                _googleSheetClient.ReadTimers(_gameData);
-        }
-        _gameData.startMenu.SetActive(false);
-        _gameData.gameHud.SetActive(true);
-        _gameData.endMenu.SetActive(false);
-        
-        _tempTimer -= Time.deltaTime;
-        _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Timer to join : " + (int)_tempTimer;
-
-        if (_tempTimer <= 0)
+        if (_googleSheetClient is null)
         {
-            _googleSheetClient.WritePlayers();
-            state = Game.State.WaitForInput;
-            _googleSheetClient.WritePlayers();
+            _googleSheetClient = GoogleSheetClient.instance;
         }
+        _googleSheetClient.ReadTimers(_gameData);
     }
-
-    private void WaitForInput()
-    {
-        //Win
-        if(_playerManager == null)
-            _playerManager = PlayerManager.instance;
-        
-        if (_playerManager.GetPlayerList().Count <= 1)
-            state = Game.State.EndGame;
-        
-        _gameData.gameHud.SetActive(true);
-        _gameData.startMenu.SetActive(false);
-
-        _gameData.timerObject.GetComponent<TextMeshProUGUI>().text = "Make your move : " + (int)_tempTimerInput;
-        _tempTimerInput -= Time.deltaTime;
-        
-        if (_tempTimerInput <= 0)
-        {
-            _prepareToDelete.Raise();
-            state = Game.State.Move;
-
-            _executePhase.Raise();
-        }
-    }
-
-    private void Move()
-    {
-        _gameData.gameHud.SetActive(false);
-        state = Game.State.WaitForInput;
-        _tempTimerInput = _gameData.timerForInputs;
-    }
-
-    private void EndGame()
-    {
-        _gameData.endMenu.SetActive(true);
-
-        _gameData.endText.text = _playerManager.GetPlayerList()[0].GetName() + " just won!!";
-        _tempTimerEndGame -= Time.deltaTime;
-        
-        float delta = _tempTimerEndGame / _gameData.timerEndGame;
-        
-        var tempBar = _gameData.waitBar.GetComponent<RectTransform>();
-
-        tempBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _waitBarSizeStart * delta);
-
-        if (_tempTimerEndGame <= 0)
-        {
-            //Yeah, awful, but i need to put it here, bc in a state for the start state, the variables are not passed to the SO,
-            //so no way to enable or disable them.
-            _endGame.Raise();
-            state = Game.State.Start;
-            _gameData.startMenu.SetActive(true);
-            _gameData.endMenu.SetActive(false);
-            //This is a method, waiting for a better state machine
-        }
-    }
-    
     public void Loading()
     {
-        _gameData.loading.SetActive(true);
-        _gameData.startMenu.SetActive(false);
+        _gameData.stateGame = SaveState;
+        _gameData.stateGame.BeginState();
+        /*
+        _gameData.stateGame.BeginState();
+        State tmp = _gameData.stateGame;
+        _gameData.stateGame = SaveState;
+        _gameData.stateGame.nextState = tmp;
+        */
     }
-    
-    public void LoadFinished() 
+    public void LoadingSave() 
     {
-        _gameData.loading.SetActive(false);
+        State tmp = _gameData.stateGame;
+        _gameData.stateGame = SaveState;
+        _gameData.stateGame.BeginState();
+        _gameData.stateGame = SaveState;
+        _gameData.stateGame.nextState = tmp;
     }
-    #endregion
+    public void LoadFinished()
+    {
+        _gameData.stateGame.GoNextState();
+    }
+    public void RaiseEndEvent()
+    {
+        _endGame.Raise();
+    }
+    public void RaiseExecuteEvent()
+    {
+        _executePhase.Raise();
+    }
+    public void RaisePrepareDeleteEvent()
+    {
+        _prepareToDelete.Raise();
+    }
+    public void RaiseDeleteTileEvent()
+    {
+        _deleteTile.Raise();
+    }
 }
