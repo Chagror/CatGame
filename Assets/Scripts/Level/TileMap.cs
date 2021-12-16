@@ -16,7 +16,7 @@ public class TileMap : MonoBehaviour
     {
         _levelCamera = Camera.main;
         _levelManager = LevelManager.instance;
-        _baseCameraSize = 50;
+        _baseCameraSize = 25;
     }
 
     public void  CreateTileMap() 

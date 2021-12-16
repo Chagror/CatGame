@@ -138,7 +138,9 @@ public class MenuManager : MonoBehaviour
             yield return null;
         }
 
-        
+        _gameManager._gameData.stateGame.GoNextState();
+        _gameManager._gameData.stateGame.BeginState();
+
         yield return new WaitForSeconds(1);
         timer = 0;
 
