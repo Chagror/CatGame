@@ -4,12 +4,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EndGame", menuName = "ScriptableObjects/State/EndGame")]
 public class EndGame : State
 {
+    private PlayerManager _playerManager;
     public float waitBarSizeStart = 1;
     public override void BeginState()
     {
         time = gameData.timerEndGame;
         gameData.endMenu.SetActive(true);
-        gameData.endText.text = PlayerManager.instance.GetPlayerList()[0].GetName() + " just won!!";
+        
+        if(_playerManager == null)
+            _playerManager = PlayerManager.instance;
+        
+        if (_playerManager.GetPlayerList().Count == 0)
+            gameData.endText.text = "Sorry you tied, no one won...";
+        else
+            gameData.endText.text = PlayerManager.instance.GetPlayerList()[0].GetName() + " just won!!";
+        
         waitBarSizeStart = gameData.waitBar.GetComponent<RectTransform>().rect.width; 
     }
 
@@ -22,7 +31,6 @@ public class EndGame : State
 
     public override void Looping()
     {
-
         time -= Time.deltaTime;
         float delta = time/ gameData.timerEndGame;
 
